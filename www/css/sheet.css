@@ -1,0 +1,30 @@
+html, 
+body,
+form {
+    height: 100%;
+}
+
+#testWord{
+    border-radius: 5px;
+}
+
+#page{
+    display : flex;
+    flex-direction: column;
+
+    justify-content : space-between;
+    align-items : center;
+
+
+
+    height: 100%;
+}
+
+#topPage{
+    flex: 0.3;
+    background-color: grey;
+}
+
+#middlePage{
+    flex : 0.8;
+}

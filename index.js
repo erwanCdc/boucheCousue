@@ -1,0 +1,45 @@
+const express = require('express');
+const seedrandom = require('seedrandom');
+const path = require('path')
+const fs = require('fs');
+
+const app = express();
+app.use(express.static(path.join(__dirname, 'www')))
+const port = 3000;
+
+var currentWord = null;
+
+app.get('/', (req,res) => {
+
+	if (currentWord === null){
+		// Read & store words into an array
+		var words = fs.readFileSync('./www/data/liste_francais_utf8.txt').toString().split("\r\n");
+		console.log('List Initialized');
+
+		// Seed generator
+		var today = new Date();
+		var day = today.getDate();
+		var month = today.getMonth()+1;
+		var year = today.getFullYear();
+		const daySeed = day*3 + month*2 + year;
+		const generator = seedrandom(daySeed);
+		const randomNumber = Math.floor(generator() * words.length);
+		currentWord = words[randomNumber];
+		console.log('Word generated : ' + words[randomNumber]);
+	}
+});
+
+
+app.get('/mot', (req, res) => {
+	res.send(currentWord);
+});
+
+
+
+
+
+app.listen(port, () => {
+	console.log(`Application running on port ${port}`)
+})
+
+
