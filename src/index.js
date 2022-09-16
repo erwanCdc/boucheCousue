@@ -5,6 +5,10 @@ const fs = require('fs')
 const app = express()
 const port = 3000
 
+app.get('/os', (res, res) => {
+	res.send(os.hostname() + " porc" + port)
+})
+
 app.get('/', (req, res) => {
 	// Read & store words into an array
 	var words = fs.readFileSync('./data/liste_francais_utf8.txt').toString().split("\r\n");
