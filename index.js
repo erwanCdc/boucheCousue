@@ -1,11 +1,12 @@
 const express = require('express');
 const seedrandom = require('seedrandom');
 const path = require('path')
+const os = require('os')
 const fs = require('fs');
 
 const app = express();
 app.use(express.static(path.join(__dirname, 'www')))
-const port = 3000;
+const port = process.env.PORT || 3000
 
 var currentWord = null;
 
@@ -35,11 +36,15 @@ app.get('/mot', (req, res) => {
 });
 
 
+app.get('/port', (req,res) => {
+	res.send("MOTUS is listening on " + os.hostname() + " port:  " + port);
+});
 
 
 
 app.listen(port, () => {
 	console.log(`Application running on port ${port}`)
-})
+});
+
 
 
