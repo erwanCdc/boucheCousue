@@ -1,4 +1,5 @@
 const express = require('express')
+const seedrandom = require('seedrandom');
 const fs = require('fs')
 
 const app = express()
@@ -10,7 +11,6 @@ app.get('/', (req, res) => {
 	console.log('List Initialized')
 
 	// Seed generator
-	const seedrandom = require('seedrandom');
 	var today = new Date();
 	var day = today.getDate();
 	var month = today.getMonth()+1;
