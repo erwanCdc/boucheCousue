@@ -20,5 +20,8 @@
   "bugs": {
     "url": "https://github.com/alexisjapas/boucheCousue/issues"
   },
-  "homepage": "https://github.com/alexisjapas/boucheCousue#readme"
+  "homepage": "https://github.com/alexisjapas/boucheCousue#readme",
+  "dependencies": {
+    "express": "^4.18.1"
+  }
 }
