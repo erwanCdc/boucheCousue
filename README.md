@@ -1,17 +1,16 @@
-# boucheCousue
-## Procedure
-### HTTP
+# Bouche cousue
+## HTTP
 
-### Node
-#### Requierements
+## Node
+### Requierements
 `npm install express`
 
 `npm install seedrandom`
 
-### ReverseProxy
+## ReverseProxy
 
-### Docker
-#### Requierements
+## Docker
+### Requierements
 - Install docker:
 
 `sudo pacman -S docker docker-compose`
@@ -28,7 +27,7 @@
 
 `sudo docker pull nocodb/nocodb`
 
-#### Postgres
+### Postgres
 - Run postgres docker from raw image:
 
 `sudo docker run --name=DOCKER_NAME -d -e POSTGRES_PASSWORD=password postgres`
