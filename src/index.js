@@ -6,7 +6,7 @@ const app = express()
 const port = 3000
 
 app.get('/os', (res, res) => {
-	res.send(os.hostname() + " porc" + port)
+	res.send(os.hostname() + " port  " + port)
 })
 
 app.get('/', (req, res) => {
