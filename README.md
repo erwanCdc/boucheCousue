@@ -4,8 +4,8 @@
 
 ### Node
 #### Requierements
-- npm install express --save
-- npm install seedrandom --save
+`npm install express`
+`npm install seedrandom`
 
 ### ReverseProxy
 
