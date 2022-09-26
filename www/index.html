@@ -11,24 +11,20 @@
     <body>      
         <div id="page">
 
-          
+          <span id="container"></span>
             <div id="topPage">
-                <form id="gamePlace">
+                <form id="gamePlace" action="/" method="post">
                     <!-- PLAYER INPUT FIELD -->
                     
                         <label for="testWord">Word : </label>
-                        <input type="text" id="testWord" name="testWord">
+                        <input type="text" id="testWord" name="testWord" maxlength="5">
                         
-                        <label for="testWordSizeOpen">(size=</label>
-                        <span id="testWordSize">0</span>
-                        <label for="testWordSizeClose">)</label>
-                        
-                        <button
-                        class="btn">Try</button>
+                        <input type="submit" value="Try">
                 </form>
             </div>
 
             <div id="middlePage">
+                
             </div>
 
 
