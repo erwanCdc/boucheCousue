@@ -1,10 +1,14 @@
 $(document).ready(function(){
 
-    $.updateSizeField = function(){
-        alert("ça marche !");
-    }
+    
+    $('#gamePlace').submit(function() {
+        var wordAttempt = $("#testWord")[0].value;
+        return false;
+    });
 
-    $(".btn").click(function(){
-        $.updateSizeField();
-      });
-  });
+
+    var mot = $.get("/mot").responseText;
+    console.log(mot);
+    
+
+});
