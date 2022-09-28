@@ -7,7 +7,6 @@ $(document).ready(function(){
             url: '/get_mot',
             success: (result) =>{
                 word = JSON.parse(result).word
-                
             },
             async: false
         });
@@ -19,6 +18,4 @@ $(document).ready(function(){
 
     console.log('after function : ' + init())
     
-    
-
 })
