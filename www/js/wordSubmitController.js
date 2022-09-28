@@ -1,14 +1,24 @@
 $(document).ready(function(){
 
+    function init(){
+        let word = ""
+
+        $.ajax({
+            url: '/get_mot',
+            success: (result) =>{
+                word = JSON.parse(result).word
+                
+            },
+            async: false
+        });
+
+        console.log('before return : ' + word)
+        return word
+    }
+
+
+    console.log('after function : ' + init())
     
-    $('#gamePlace').submit(function() {
-        var wordAttempt = $("#testWord")[0].value;
-        return false;
-    });
-
-
-    var mot = $.get("/mot").responseText;
-    console.log(mot);
     
 
-});
+})
