@@ -1,5 +1,9 @@
 $(document).ready(function(){
 
+    var target 
+    var iterator = 1
+
+
     function init(){
         let word = ""
 
@@ -11,56 +15,105 @@ $(document).ready(function(){
             async: false
         });
 
-    var test = 'abracadabri'
-    var test2 = 'abracidabri'
-    
-    function word_comparison (input_word, submit_word){
-    
-        len = submit_word.length
-        
+        document.getElementById('testWord').setAttribute('maxlength', word.length)
+
+        return word
+
+    }
+
     function generate_table(){
         var table = document.getElementById("tries")
-        var tableBody = document.createElement("triesBody")
 
-        if (input_word === submit_word){
+        for (var i = 0; i < 6; i++) {
+
+            var row = document.createElement("tr")
+            row.setAttribute('id', ('row'+i))
+            
+            for (var j = 0; j <target.length ; j++) {
+
+                var cell = document.createElement("td")
+            if(i==0){
+                if(j==0){
+                    cell.setAttribute('id', ('col'+j))
+                    var cellText = document.createTextNode(target[j])
+                }
+                else{
+                    cell.setAttribute('id', ('col'+j))
+                    var cellText = document.createTextNode('.')
+                }
+                
+            }
+            else {
+                var cellText = document.createTextNode(' ')
+                cell.setAttribute('id', ('col'+j))
+            }
+
+            cell.appendChild(cellText);
+            row.appendChild(cell)
+            }
+
+            table.appendChild(row)
+        }
+
+    }
+
+    function update_table(submit){
+        let id = ('row'+iterator)
+        var boxes = document.getElementById(id).childNodes
+        var comp = word_comparison(submit)
+        let k = 0
+
+        boxes.forEach((node) => {
+           node.innerHTML = comp[k]
+           let color = 'green'
+           
+           if(comp[k]=='?'){
+            color = 'orange'
+           }
+           if(comp[k]=='_'){
+            color = 'red'
+           }
+
+           node.setAttribute("style", "background-color: " + color + ";");
+           k=k+1
+        })
         
-            console.log('You succeed ! <3')
-        
-        } else {
-        
-            input_word_split = input_word.split("")
-            submit_word_split = submit_word.split("")
-        
-            let result = []
-        
-            for (let i=0; i<len; i++){
-        
-            if (input_word_split[i] === submit_word_split[i]){
-                // Correct letter in the right place
-                result[i] = submit_word_split[i]
-            } else {
-                if (input_word.includes(submit_word_split[i])){
-                    // Correct letter but not in the right place
-                    result[i] = '?'
-                } else {
-                    // Uncorrect lettre
-                    result[i] = '_'
+        iterator = iterator + 1
+    }
+
+    function word_comparison(submit){
+    
+        var diff = ""
+        target.toLowerCase()
+
+       for(i=0; i<target.length; i++) {
+            if (target[i] == submit[i]){
+                diff += target[i]
+            }
+            else{
+                if (target.includes(submit[i])){
+                    diff += "?"
+                }
+                else{
+                    diff += "_"
                 }
             }
-            
-            }
-
-        console.log("Try again :'(")
-        console.log(result)
         }
-        
-    
+        return diff
     }
-    
-    word_comparison(test, test2)
-    
+
+    $('#gamePlace').submit(function( event ) {
+        var submit = $('#testWord').val()
+        update_table(submit)
+        return false
+    });
+
+    target = init()
+    generate_table()
 
 
-    console.log('after function : ' + init())
+
+
+
     
 })
