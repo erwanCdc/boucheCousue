@@ -30,9 +30,7 @@ body{
     display: flex;
     align-items: center;
     justify-content: center;
-    background-image:url(../img/BoucheCousue_Text.png);
-    background-size: contain;
-    background-repeat: no-repeat;
+
 }
 
 #topPage{
@@ -46,6 +44,9 @@ body{
     align-items: center;
     justify-content: space-between;
     flex-direction: row;
+    background-image:url(../img/BoucheCousue_Text.png);
+    background-size: contain;
+    background-repeat: no-repeat;
 }
 
 #middlePage{
