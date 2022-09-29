@@ -18,7 +18,9 @@
 
                 <div id="head1" class="head">
                     <span id="userdata"></span>
-                    <button id="score">Score</button>
+                    <form id="scoreForm" action="/html/score.html">
+                        <input type="submit" value="Score">
+                    </form>
                 </div>
 
                 <div id="head2" class="head">
@@ -33,7 +35,7 @@
                 <div id="head4" class="head">
                     <form id="gamePlace">
                         <label for="testWord">Word : </label>
-                        <input type="text" id="testWord" name="testWord">
+                        <input type="text" id="testWord" name="testWord" required="true">
                         <input type="submit" value="Try">
                     </form>
                 </div>
@@ -70,5 +72,4 @@
 
        
     </body>
-    <script></script>
 </html>

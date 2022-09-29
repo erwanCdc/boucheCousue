@@ -6,7 +6,7 @@ $(document).ready(function(){
         document.location.href="./html/login.html"
     }
 
-    var target 
+    var target
     var iterator = 1
     var win = false
 
@@ -125,17 +125,24 @@ $(document).ready(function(){
                 alert('YOU WIN')
                 sessionStorage.setItem('score', (parseInt(sessionStorage.getItem('score')) + 1))
                 console.log("score = " + sessionStorage.getItem('score'))
+                location.reload()
             }
         }
 
         return false
     });
 
-    $('#logout').click(function() {
+    $('#logout').click(function(){
         sessionStorage.clear()
-        document.location.href="./html/login.html"
+        document.location.href="/"
+    })
 
-    });
+    
+    $("#scoreForm").submit(function(){
+        $.post("http://localhost:3000/score",{score:sessionStorage.getItem('score')}, function(data){
+
+          });
+    })
 
 
 

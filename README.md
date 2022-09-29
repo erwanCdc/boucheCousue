@@ -33,7 +33,7 @@
 
 `sudo docker pull nocodb/nocodb`
 
-### Postgres
+### Using existing image
 - Run postgres docker from raw image:
 
 `sudo docker run --name=DOCKER_NAME -d -e POSTGRES_PASSWORD=password postgres`
@@ -73,3 +73,32 @@ VALUES
 - Stop the container:
 
 `sudo docker stop CONTAINER_ID`
+
+### Storing data
+
+- Create a volume named postgres_data
+
+`sudo docker volume create --name postgres_data`
+
+- Display all volumes
+
+`sudo docker volume ls`
+
+- Create docker container linked to **postgres_data** volume
+
+`sudo docker run --name=postgres_c_1 -v postgres_data:/var/lib/postgresql/data -d -e POSTGRES_PASSWORD=password postgres`
+
+# TODO
+[] End Docker (image creation++)
+[] Documentation
+
+# Tests
+``` mermaid
+sequenceDiagram
+    participant Client
+    participant NodeJS
+    participant Database
+
+    Client->>NodeJS: Send word
+    NodeJS->>Database: Test
+```
