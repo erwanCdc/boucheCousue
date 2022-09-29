@@ -2,6 +2,7 @@ $(document).ready(function(){
 
     var target 
     var iterator = 1
+    var win = false
 
     function init(){
         let word = ""
@@ -17,7 +18,7 @@ $(document).ready(function(){
         document.getElementById('testWord').setAttribute('maxlength', word.length)
         document.getElementById('testWord').setAttribute('minlength', word.length)
 
-        return word
+        return word.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
 
     }
 
@@ -64,11 +65,12 @@ $(document).ready(function(){
         let k = 0
 
         boxes.forEach((node) => {
-           node.innerHTML = comp[k]
+           node.innerHTML = submit[k]
            let color = 'green'
            
            if(comp[k]=='?'){
             color = 'orange'
+            node.setAttribute("style", "background-radius: " + color + ";");
            }
            if(comp[k]=='_'){
             color = 'red'
@@ -77,8 +79,12 @@ $(document).ready(function(){
            node.setAttribute("style", "background-color: " + color + ";");
            k=k+1
         })
-        
+
         iterator = iterator + 1
+
+        if (comp == submit) win = true
+
+        
     }
 
     function word_comparison(submit){
@@ -102,9 +108,17 @@ $(document).ready(function(){
         return diff
     }
 
+
     $('#gamePlace').submit(function( event ) {
-        var submit = $('#testWord').val()
-        update_table(submit)
+        if (!win){
+            var submit = $('#testWord').val()
+            update_table(submit)
+            $('#testWord').val('')
+            if (win == true){
+                alert('YOU WIN')
+            }
+        }
+
         return false
     });
 
