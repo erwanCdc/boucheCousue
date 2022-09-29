@@ -32,16 +32,25 @@ const randomNumber = Math.floor(generator() * words.length)
 currentWord = words[randomNumber]
 console.log('Word generated : ' + words[randomNumber])
 
+var score = 0
+var username
+var password
+
 app.get('/', (req,res) => {
 	
 })
 
-app.post('/', (req, res) => {
-	console.log(req.body)
+app.post('/score', (req, res) => {
+	score = req.body.score
 })
 
-app.post('/score', (req,res) => {
-	res.send(req.body)
+app.get('/score', (req, res) => {
+	res.send(score)
+})
+
+app.post('/user', (req,res) => {
+	username = req.body.username
+	password = req.body.password
 })
 
 app.get('/get_mot', (req, res) => {  
