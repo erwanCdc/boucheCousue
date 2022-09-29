@@ -1,10 +1,5 @@
 # Bouche cousue
-## TODO
-- Class **game** with **word generation method** and **day-word static attribute**
-
 ## HTTP
-### Requierements
-
 
 <<<<<<< HEAD
 #REQUIRES
