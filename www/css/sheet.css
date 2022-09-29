@@ -1,7 +1,16 @@
 html, 
-body,
 form {
+    width: 100%;
     height: 100%;
+    background-color : grey;
+    
+}
+
+body{
+    width: 100%;
+    height: 100%;
+    margin:0;
+    padding:0;
 }
 
 #testWord{
@@ -15,16 +24,39 @@ form {
     justify-content : space-between;
     align-items : center;
 
-
-
     height: 100%;
+}
+
+#gamePlace{
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 #topPage{
     flex: 0.3;
     background-color: grey;
+    width: 100%;
+    height: 100%;
+    font-family: sans-serif;
 }
 
 #middlePage{
     flex : 0.8;
+    width: 100%;
+    height: 100%;
+}
+table{
+    table-layout: fixed;
+    width: 100%;
+    height: 100%;
+    border-color: blue;
+}
+
+td{
+    text-align : center;
+    color : white;
+    background-color:black;
+    font-family: sans-serif;
+    font-size: 150%;
 }

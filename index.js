@@ -1,16 +1,21 @@
 const express = require('express')
+
 const seedrandom = require('seedrandom')
-const bodyParser = require("body-parser");
+const bodyParser = require("body-parser")
 const path = require('path')
+
 const os = require('os')
 const fs = require('fs')
 
+
 const app = express()
-app.use(express.static(path.join(__dirname, 'www')))
+
 const port = process.env.PORT || 3000
+const host = 'localhost:3000'
 
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
+app.use(bodyParser.text());
+app.use(express.static(path.join(__dirname, 'www')))
 
 // Read & store words into an array
 var words = fs.readFileSync('./www/data/liste_francais_utf8.txt').toString().split("\r\n")
@@ -28,7 +33,7 @@ currentWord = words[randomNumber]
 console.log('Word generated : ' + words[randomNumber])
 
 app.get('/', (req,res) => {
-
+	
 })
 
 app.post('/', (req, res) => {
@@ -36,9 +41,12 @@ app.post('/', (req, res) => {
 	console.log(req.body)
 })
 
-app.get('/mot', (req, res) => {
-	res.send(currentWord)
-})
+app.get('/get_mot', (req, res) => {  
+	response = {  
+		   word:currentWord
+	   }
+	   res.end(JSON.stringify(response));  
+	})  
 
 app.get('/port', (req,res) => {
 	res.send("MOTUS is listening on " + os.hostname() + " port:  " + port)
