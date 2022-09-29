@@ -1,13 +1,12 @@
 # Bouche cousue
 ## HTTP
 
-<<<<<<< HEAD
 #REQUIRES
 - npm install express --save
 - npm install seedrandom --save
 - npm install path --save
 - npm install body-parser --save
-=======
+
 ## Node
 ### Requierements
 `npm install express`
@@ -74,4 +73,3 @@ VALUES
 - Stop the container:
 
 `sudo docker stop CONTAINER_ID`
->>>>>>> 5048f3962853c68b8b1487d1ebdbdcdb5149755f
