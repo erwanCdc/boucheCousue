@@ -111,7 +111,7 @@ $(document).ready(function(){
 
     $('#gamePlace').submit(function( event ) {
         if (!win){
-            var submit = $('#testWord').val()
+            var submit = $('#testWord').val().normalize('NFD').replace(/[\u0300-\u036f]/g, '')
             update_table(submit)
             $('#testWord').val('')
             if (win == true){
