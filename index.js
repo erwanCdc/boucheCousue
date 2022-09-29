@@ -17,7 +17,6 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.text());
 app.use(express.static(path.join(__dirname, 'www')))
 
-
 // Read & store words into an array
 var words = fs.readFileSync('./www/data/liste_francais_utf8.txt').toString().split("\r\n")
 console.log('List Initialized')
@@ -38,9 +37,9 @@ app.get('/', (req,res) => {
 })
 
 app.post('/', (req, res) => {
-	console.log(req.body);
-})
 
+	console.log(req.body)
+})
 
 app.get('/get_mot', (req, res) => {  
 	response = {  
@@ -49,16 +48,10 @@ app.get('/get_mot', (req, res) => {
 	   res.end(JSON.stringify(response));  
 	})  
 
-
 app.get('/port', (req,res) => {
 	res.send("MOTUS is listening on " + os.hostname() + " port:  " + port)
 })
 
-
-
 app.listen(port, () => {
 	console.log(`Application running on port ${port}`)
 })
-
-
-

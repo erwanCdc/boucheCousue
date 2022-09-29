@@ -1,4 +1,20 @@
 $(document).ready(function(){
+<<<<<<< HEAD
+    $('#gamePlace').submit(function() {
+	    var wordAttempt = $("#testWord")[0].value
+
+	    $.ajax({
+		    type: "POST",
+		    url: "/",
+		    data: wordAttempt,
+	    })
+
+	    return false
+    })
+
+    var mot = $.get("/mot").responseText
+})
+=======
 
     var target 
     var iterator = 1
@@ -131,3 +147,4 @@ $(document).ready(function(){
 
     
 })
+>>>>>>> 46268edf23edee4f4a57c1f30aa3f27c1b8e2c38
