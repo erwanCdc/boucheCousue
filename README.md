@@ -91,3 +91,12 @@ VALUES
 # TODO
 [] End Docker (image creation++)
 [] Documentation
+
+# Tests
+sequenceDiagram
+    participant Client
+    participant NodeJS
+    participant Database
+
+    Client->>NodeJS: Send word
+    NodeJS->>Database: Test
