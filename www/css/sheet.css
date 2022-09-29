@@ -31,6 +31,9 @@ body{
     display: flex;
     align-items: center;
     justify-content: center;
+    background-image:url(../img/BoucheCousue_Text.png);
+    background-size: contain;
+    background-repeat: no-repeat;
 }
 
 #topPage{
