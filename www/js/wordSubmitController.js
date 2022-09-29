@@ -1,14 +1,15 @@
 $(document).ready(function(){
-
-    
     $('#gamePlace').submit(function() {
-        var wordAttempt = $("#testWord")[0].value;
-        return false;
-    });
+	    var wordAttempt = $("#testWord")[0].value
 
+	    $.ajax({
+		    type: "POST",
+		    url: "/",
+		    data: wordAttempt,
+	    })
 
-    var mot = $.get("/mot").responseText;
-    console.log(mot);
-    
+	    return false
+    })
 
-});
+    var mot = $.get("/mot").responseText
+})
