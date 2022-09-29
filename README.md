@@ -93,6 +93,7 @@ VALUES
 [] Documentation
 
 # Tests
+``` mermaid
 sequenceDiagram
     participant Client
     participant NodeJS
@@ -100,3 +101,4 @@ sequenceDiagram
 
     Client->>NodeJS: Send word
     NodeJS->>Database: Test
+```
