@@ -3,7 +3,6 @@ $(document).ready(function(){
     var target 
     var iterator = 1
 
-
     function init(){
         let word = ""
 
@@ -16,6 +15,7 @@ $(document).ready(function(){
         });
 
         document.getElementById('testWord').setAttribute('maxlength', word.length)
+        document.getElementById('testWord').setAttribute('minlength', word.length)
 
         return word
 
