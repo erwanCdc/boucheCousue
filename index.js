@@ -37,8 +37,11 @@ app.get('/', (req,res) => {
 })
 
 app.post('/', (req, res) => {
-
 	console.log(req.body)
+})
+
+app.post('/score', (req,res) => {
+	res.send(req.body)
 })
 
 app.get('/get_mot', (req, res) => {  
