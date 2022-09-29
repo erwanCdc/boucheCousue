@@ -1,5 +1,11 @@
 $(document).ready(function(){
 
+
+    //DEFINE AN AUTH/REDIRECT CLASS
+    if (sessionStorage.getItem("username") == null){
+        document.location.href="./html/login.html"
+    }
+
     var target 
     var iterator = 1
     var win = false
@@ -15,6 +21,7 @@ $(document).ready(function(){
             async: false
         });
 
+        document.getElementById('userdata').innerHTML = ("Player : " + sessionStorage.getItem("username"))
         document.getElementById('testWord').setAttribute('maxlength', word.length)
         document.getElementById('testWord').setAttribute('minlength', word.length)
 
@@ -116,11 +123,21 @@ $(document).ready(function(){
             $('#testWord').val('')
             if (win == true){
                 alert('YOU WIN')
+                sessionStorage.setItem('score', (parseInt(sessionStorage.getItem('score')) + 1))
+                console.log("score = " + sessionStorage.getItem('score'))
             }
         }
 
         return false
     });
+
+    $('#logout').click(function() {
+        sessionStorage.clear()
+        document.location.href="./html/login.html"
+
+    });
+
+
 
     target = init()
     generate_table()
