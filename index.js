@@ -65,5 +65,5 @@ app.get('/port', (req,res) => {
 })
 
 app.listen(port, () => {
-	console.log(`Application running on port ${port}`)
+	console.log('Application running on ' + os.hostname() + " port : " + port)
 })
