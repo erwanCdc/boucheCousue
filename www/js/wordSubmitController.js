@@ -104,7 +104,7 @@ $(document).ready(function(){
                 diff += target[i]
             }
             else{
-                if (target.includes(submit[i])){
+                if (target.includes(submit[i], i)){
                     diff += "?"
                 }
                 else{
@@ -142,6 +142,10 @@ $(document).ready(function(){
         $.post("http://localhost:3000/score",{score:sessionStorage.getItem('score')}, function(data){
 
           });
+    })
+
+    $('#header').click(function(){
+        console.log("it works")
     })
 
 
