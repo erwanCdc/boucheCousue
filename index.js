@@ -10,12 +10,16 @@ const fs = require('fs')
 
 const app = express()
 
+
 const port = process.env.PORT || 3000
 const host = 'localhost:3000'
 
+const mainPath = (__dirname+'/www')
+
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.text());
-app.use(express.static(path.join(__dirname, 'www')))
+app.use(express.static(mainPath))
+
 
 // Read & store words into an array
 var words = fs.readFileSync('./www/data/liste_francais_utf8.txt').toString().split("\r\n")
@@ -41,17 +45,30 @@ app.get('/', (req,res) => {
 })
 
 app.post('/score', (req, res) => {
-	score = req.body.score
+	res.sendFile(mainPath+'/html/score.html')
 })
 
 app.get('/score', (req, res) => {
 	res.send(score)
 })
 
-app.post('/user', (req,res) => {
+app.get('/login', (req, res) =>{
+	res.sendFile(mainPath+'/html/login.html')
+})
+
+app.post('/log_user', (req,res) => {
 	username = req.body.username
 	password = req.body.password
+	res.sendFile(mainPath+'/index.html')
 })
+
+app.get('/user', (req, res) => {
+	response = {  
+		   username:username,
+		   score:score
+	   }
+	   res.end(JSON.stringify(response));  
+})  
 
 app.get('/get_mot', (req, res) => {  
 	response = {  

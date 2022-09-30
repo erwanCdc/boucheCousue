@@ -7,16 +7,17 @@ $(document).ready(function(){
         sessionStorage.setItem("score", 0)
 
 
-        $.post("/user",{username:sessionStorage.getItem("username"), 
-                        password:sessionStorage.getItem("password")}, function(data){
-                            
-        });
-
-        document.location.href="/"
-
+        $.ajax({
+            type: "POST",
+            url: "log_user",
+            data: {username:sessionStorage.getItem("username"), 
+            password:sessionStorage.getItem("password")},
+            success: function(page){
+                $('html').html(page);
+            }
+        })
 
         return false
-
-    });
+    })
 
 })

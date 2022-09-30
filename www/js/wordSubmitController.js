@@ -1,9 +1,15 @@
 $(document).ready(function(){
 
-
     //DEFINE AN AUTH/REDIRECT CLASS
     if (sessionStorage.getItem("username") == null){
-        document.location.href="./html/login.html"
+        $.ajax({
+            type: "GET",
+            url: "login",
+            data: { },
+            success: function(data){
+                $('html').html(data);
+            }
+        })
     }
 
     var target
@@ -19,7 +25,7 @@ $(document).ready(function(){
                 word = JSON.parse(result).word
             },
             async: false
-        });
+        })
 
         document.getElementById('userdata').innerHTML = ("Player : " + sessionStorage.getItem("username"))
         document.getElementById('testWord').setAttribute('maxlength', word.length)
@@ -104,7 +110,7 @@ $(document).ready(function(){
                 diff += target[i]
             }
             else{
-                if (target.includes(submit[i], i)){
+                if (target.includes(submit[i])){
                     diff += "?"
                 }
                 else{
@@ -130,22 +136,32 @@ $(document).ready(function(){
         }
 
         return false
-    });
+    })
 
     $('#logout').click(function(){
-        sessionStorage.clear()
-        document.location.href="/"
+        $.ajax({
+            type: "GET",
+            url: "login",
+            success: (page) =>{
+                sessionStorage.clear()
+                $('html').html(page)
+            },
+        })
     })
 
     
     $("#scoreForm").submit(function(){
-        $.post("http://localhost:3000/score",{score:sessionStorage.getItem('score')}, function(data){
 
-          });
-    })
+        $.ajax({
+            type: "POST",
+            url: "score",
+            data: {score:sessionStorage.getItem('score')},
+            success: function(page){
+                $('html').html(page)
+            }
+        })
 
-    $('#header').click(function(){
-        console.log("it works")
+        return false
     })
 
 
