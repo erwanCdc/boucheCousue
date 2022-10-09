@@ -50,7 +50,7 @@ $(document).ready(function(){
             if(i==0){
                 if(j==0){
                     cell.setAttribute('id', ('col'+j))
-                    var cellText = document.createTextNode(target[j])
+                    var cellText = document.createTextNode(target[j].toUpperCase())
                 }
                 else{
                     cell.setAttribute('id', ('col'+j))
@@ -79,7 +79,7 @@ $(document).ready(function(){
         let k = 0
 
         boxes.forEach((node) => {
-           node.innerHTML = submit[k]
+           node.innerHTML = submit[k].toUpperCase()
            let color = 'green'
            
            if(comp[k]=='?'){
@@ -96,7 +96,7 @@ $(document).ready(function(){
 
         iterator = iterator + 1
 
-        if (comp == submit) win = true
+        if (comp.toLowerCase() == submit.toLowerCase()) win = true
 
         
     }
@@ -104,7 +104,8 @@ $(document).ready(function(){
     function word_comparison(submit){
     
         var diff = ""
-        target.toLowerCase()
+        target = target.toLowerCase()
+        submit = submit.toLowerCase()
 
        for(i=0; i<target.length; i++) {
             if (target[i] == submit[i]){
