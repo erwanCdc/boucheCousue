@@ -78,6 +78,10 @@ VALUES ('Bob','Kelso'), ('Mickey', 'Mouse'), ('Lennart', 'Green'), ('David', 'Ge
 
 `sudo docker volume ls`
 
+- Remove volume named postgres_data
+
+`sudo docker volume rm postgres_data`
+
 - Create docker container linked to **postgres_data** volume
 
 `sudo docker run --name=postgres_c_1 -v postgres_data:/var/lib/postgresql/data -d -e POSTGRES_PASSWORD=password postgres`
