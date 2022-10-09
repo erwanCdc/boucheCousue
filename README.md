@@ -51,7 +51,7 @@
 `CREATE DATABASE my_bdd;`
 
 ```
-CREATE TABLE my_table (firstname varchar(50) NOT NULL UNIQUE, lastname varchar(50) NOT NULL UNIQUE);
+CREATE TABLE users(firstname varchar(50) NOT NULL UNIQUE, lastname varchar(50) NOT NULL UNIQUE);
 INSERT INTO users(firstname, lastname)
 VALUES ('Bob','Kelso'), ('Mickey', 'Mouse'), Lennart', 'Green'), David', 'Gemmel'), Randal', 'Munroe');
 ```
