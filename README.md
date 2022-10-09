@@ -68,6 +68,10 @@ VALUES ('Bob','Kelso'), ('Mickey', 'Mouse'), ('Lennart', 'Green'), ('David', 'Ge
 
 `sudo docker stop CONTAINER_ID`
 
+- Remove the container:
+
+`sudo docker rm CONTAINER_ID`
+
 ### Storing data
 
 - Create a volume named postgres_data
@@ -85,6 +89,19 @@ VALUES ('Bob','Kelso'), ('Mickey', 'Mouse'), ('Lennart', 'Green'), ('David', 'Ge
 - Create docker container linked to **postgres_data** volume
 
 `sudo docker run --name=postgres_c_1 -v postgres_data:/var/lib/postgresql/data -d -e POSTGRES_PASSWORD=password postgres`
+
+### Image creation
+
+- When the Dockerfile is written:
+
+`sudo docker build -f Dockerfile -t IMAGE_NAME:latest .`
+
+- Create a container from this image:
+
+`sudo docker run --init --publish 3000:3000 IMAGE_NAME`
+
+    - Where: `--init` enables you to shutdown the server with Ctrl+C
+    - And: `--publish 3000:3000` enables it to work locally
 
 # TODO
 [] End Docker (image creation++)
