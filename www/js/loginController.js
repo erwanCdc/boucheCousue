@@ -1,6 +1,6 @@
 $(document).ready(function(){
 
-    $('#logForm').submit(function( event ) {
+    $('#loginForm').submit(function( event ) {
 
         sessionStorage.setItem("username", $("#username").val())
         sessionStorage.setItem("password", $("#password").val())
@@ -13,7 +13,7 @@ $(document).ready(function(){
             data: {username:sessionStorage.getItem("username"), 
             password:sessionStorage.getItem("password")},
             success: function(page){
-                $('html').html(page);
+                $('#page').html(page);
             }
         })
 

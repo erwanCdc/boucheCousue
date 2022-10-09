@@ -1,72 +1,94 @@
+<!--
+    GLOBAL PATTERN:
+
+    ALWAYS 3 MAIN HTML TAGS IN BODY : RESPECTIVELY HEADER, PAGE AND FOOTER.
+    NO MORE, NO LESS !!
+
+        - HEADER : flex : 0.2
+        - PAGE : flex : 0.7
+        - FOOTER : flex : 0.1
+
+-->
+
+
 <!DOCTYPE HTML>
 <html>
     <head>
         <title>BOUCHECOUSUE - GAME</title>
         <meta charset="UTF-8">
-        <script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
+
+        
+        <link rel="stylesheet" href="./css/header.css">
         <link rel="stylesheet" href="./css/sheet.css">
-        <script src="./js/wordSubmitController.js"> </script>
+
+        <script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
+
         <link rel="icon" href="./img/BoucheCousue_Logo.png">
     </head>
 
-    <body>      
+    <body>  
+
+        
+        <div id="header">
+            <script>
+                $.ajax({
+                    type: "GET",
+                    url: "header",
+                    data: { },
+                    success: function(data){
+                        $('#header').html(data);
+                    },
+                    async: false
+                })
+            </script>      
+        </div>
+
+        
+
+
         <div id="page">
+            <script>
 
-            <div id="topPage">
-                <div id="head1" class="head">
-                    <span id="userdata"></span>
-                    <form id="scoreForm" action="/html/score.html">
-                        <input type="submit" value="Score">
-                    </form>
-                </div>
-                
-                <div id="head2" class="head">
-                
-                </div>
-                
-                
-                <div id="head3" class="head">
-                   
-                </div>
-                
-                <div id="head4" class="head">
-                    <form id="gamePlace">
-                        <label for="testWord">Word : </label>
-                        <input type="text" id="testWord" name="testWord" required="true">
-                        <input type="submit" value="Try">
-                    </form>
-                </div>
-                
-                
-                <div id="head5" class="head">
-                
-                </div>
-                
-                
-                
-                <div id="head6" class="head">
-                
-                </div>
-                
-                <div id="head7" class="head">
-                    <button id="logout">Log Out</button>
-                </div>
-                          
-            </div>
+                    $.ajax({
+                        type: "GET",
+                        url: "user",
+                        success: (result) =>{
+                            
+                            if (JSON.parse(result).username != null) {
+                                $.ajax({
+                                    type: "GET",
+                                    url: "game",
+                                    success: (page) =>{
+                                        $('#page').html(page)
+                                    },
+                                    async: false
+                                })
+                            }
+                            else {
+                                $.ajax({
+                                    type: "GET",
+                                    url: "login",
+                                    success: (page) =>{
+                                        sessionStorage.clear()
+                                        $('#page').html(page)
+                                    },
+                                    async: false
+                                })
+                            }
+                            
+                        },
+                        async: false
+                    })
 
-            <div id="middlePage">
-                <table id="tries">
-
-
-                </table>
-            </div>
-
-
+                
+            </script>
         </div>
 
 
-       
-    </body>
+        <div id="footer">
+            <h1> motus </h1>
+        </div>
 
- 
+
+    </body>
 </html>

@@ -44,38 +44,57 @@ app.get('/', (req,res) => {
 	
 })
 
-app.post('/score', (req, res) => {
-	res.sendFile(mainPath+'/html/score.html')
+app.get('/game', (req,res) => {
+	res.sendFile(mainPath+'/html/game.html')
 })
 
 app.get('/score', (req, res) => {
-	res.send(score)
+	res.sendFile(mainPath+'/html/score.html')
+})
+
+app.post('/score', (req, res) => {
+	score = req.body.score
+	console.log("score update : " + score)
 })
 
 app.get('/login', (req, res) =>{
 	res.sendFile(mainPath+'/html/login.html')
 })
 
+app.get('/logout', (req, res) =>{
+	username = null
+	password = null
+	score = null
+	res.sendFile(mainPath+'/html/login.html')
+})
+
+app.get('/header', (req,res) => {
+	res.sendFile(mainPath+'/html/header.html')
+})
+
 app.post('/log_user', (req,res) => {
 	username = req.body.username
 	password = req.body.password
-	res.sendFile(mainPath+'/index.html')
+	score = 0
+	console.log("user authenticate : " + username)
+	res.sendFile(mainPath+'/html/game.html')
 })
 
 app.get('/user', (req, res) => {
 	response = {  
-		   username:username,
-		   score:score
-	   }
-	   res.end(JSON.stringify(response));  
+		username:username,
+		score:score
+	}
+	console.log(response)
+	res.end(JSON.stringify(response));  
 })  
 
 app.get('/get_mot', (req, res) => {  
 	response = {  
-		   word:currentWord
-	   }
-	   res.end(JSON.stringify(response));  
-	})  
+		word:currentWord
+	}
+	res.end(JSON.stringify(response));  
+})  
 
 app.get('/port', (req,res) => {
 	res.send("MOTUS is listening on " + os.hostname() + " port:  " + port)

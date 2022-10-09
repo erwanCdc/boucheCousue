@@ -1,5 +1,6 @@
 $(document).ready(function(){
 
+    /*
     //DEFINE AN AUTH/REDIRECT CLASS
     if (sessionStorage.getItem("username") == null){
         $.ajax({
@@ -11,6 +12,7 @@ $(document).ready(function(){
             }
         })
     }
+    */
 
     var target
     var iterator = 1
@@ -27,7 +29,6 @@ $(document).ready(function(){
             async: false
         })
 
-        document.getElementById('userdata').innerHTML = ("Player : " + sessionStorage.getItem("username"))
         document.getElementById('testWord').setAttribute('maxlength', word.length)
         document.getElementById('testWord').setAttribute('minlength', word.length)
 
@@ -130,36 +131,16 @@ $(document).ready(function(){
             if (win == true){
                 alert('YOU WIN')
                 sessionStorage.setItem('score', (parseInt(sessionStorage.getItem('score')) + 1))
-                console.log("score = " + sessionStorage.getItem('score'))
-                location.reload()
+                
+                $.ajax({
+                    type: "POST",
+                    url: "score",
+                    data: {score : sessionStorage.getItem('score')},
+                    success: function(data){
+                    }
+                })
             }
         }
-
-        return false
-    })
-
-    $('#logout').click(function(){
-        $.ajax({
-            type: "GET",
-            url: "login",
-            success: (page) =>{
-                sessionStorage.clear()
-                $('html').html(page)
-            },
-        })
-    })
-
-    
-    $("#scoreForm").submit(function(){
-
-        $.ajax({
-            type: "POST",
-            url: "score",
-            data: {score:sessionStorage.getItem('score')},
-            success: function(page){
-                $('html').html(page)
-            }
-        })
 
         return false
     })
