@@ -1,0 +1,15 @@
+sudo docker ps
+sudo docker image list
+
+sudo docker build -f Dockerfile.index -t index:latest .
+sudo docker run --name=index index
+
+sudo docker build -f Dockerfile.score -t score:latest .
+sudo docker run --name=score -v volume:/var/lib/postgresql/data -d -e POSTGRES_PASSWORD=1234 score
+
+sudo docker stop 6a778f55aa9f
+
+sudo docker image rm 
+
+sudo docker-compose start
+sudo docker-compose stop
