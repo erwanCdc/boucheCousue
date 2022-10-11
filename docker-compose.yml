@@ -12,6 +12,6 @@ services:
     image: score
     container_name: score
     ports:
-      - "3001:3001"
+      - "5432:5432"
     restart: always
     init: true
