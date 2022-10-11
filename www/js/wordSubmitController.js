@@ -63,21 +63,28 @@ $(document).ready(function(){
         var boxes = document.getElementById(id).childNodes
         var comp = word_comparison(submit)
         let k = 0
+        var delayInMilliseconds = 500; //1 second
 
-        boxes.forEach((node) => {
-           node.innerHTML = submit[k].toUpperCase()
-           let color = 'green'
-           
-           if(comp[k]=='?'){
-            color = 'orange'
-            node.setAttribute("style", "background-radius: " + color + ";");
-           }
-           if(comp[k]=='_'){
-            color = 'red'
-           }
 
-           node.setAttribute("style", "background-color: " + color + ";");
-           k=k+1
+
+
+        boxes.forEach((node,i) => {
+           setTimeout(() => {
+
+                node.innerHTML = submit[k].toUpperCase()
+                let color = 'green'
+                
+                if(comp[k]=='?'){
+                    color = 'orange'
+                    node.setAttribute("style", "background-radius: " + color + ";");
+                }
+                if(comp[k]=='_'){
+                    color = 'red'
+                }
+
+                node.setAttribute("style", "background-color: " + color + ";");
+                k=k+1
+            }, i*150)
         })
 
         iterator = iterator + 1
@@ -113,21 +120,40 @@ $(document).ready(function(){
     $('#gamePlace').submit(function( event ) {
         if (!win){
             var submit = $('#testWord').val().normalize('NFD').replace(/[\u0300-\u036f]/g, '')
-            update_table(submit)
-            $('#testWord').val('')
-            if (win == true){
-                alert('YOU WIN')
-                sessionStorage.setItem('score', (parseInt(sessionStorage.getItem('score')) + 1))
-                
-                $.ajax({
-                    type: "POST",
-                    url: "score",
-                    data: {score : sessionStorage.getItem('score')},
-                    success: function(data){
+            var test
+            $.ajax({
+                type: "POST",
+                url: "test_word",
+                data: {word : submit.toLowerCase()},
+                success: function(result){
+                    test = (JSON.parse(result).test)
+                },
+                async: false
+            })
+
+            if (test == "true"){
+                update_table(submit)
+                    $('#testWord').val('')
+                    if (win == true){
+                        alert('YOU WIN')
+                        sessionStorage.setItem('score', (parseInt(sessionStorage.getItem('score')) + 1))
+                        
+                        $.ajax({
+                            type: "POST",
+                            url: "score",
+                            data: {score : sessionStorage.getItem('score')},
+                            success: function(data){
+                            }
+                        })
                     }
-                })
+                }
+            
+            else{
+                alert("Your word doesn't exist !")
             }
         }
+
+
 
         return false
     })
