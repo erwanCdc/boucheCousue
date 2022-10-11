@@ -1,0 +1,23 @@
+#syntax=docker/dockerfile:1
+
+FROM postgres AS score
+ENV POSTGRES_PASSWORD 1234
+ENV POSTGRES_DB scores
+ENV POSTGRES_USER postgres
+WORKDIR /db
+COPY ["package.json", "package-lock.json*", "./"]
+COPY . .
+RUN echo "SCORE" && ls -la && pwd
+
+FROM node AS main
+WORKDIR /app
+COPY ["package.json", "package-lock.json*", "./"]
+RUN echo "MAIN" && npm install
+COPY . .
+
+FROM alpine AS merged
+WORKDIR /app
+COPY --from=score /db .
+COPY --from=main . .
+RUN echo "MERGED" && ls -la
+CMD [ "node", "score.js" ]
