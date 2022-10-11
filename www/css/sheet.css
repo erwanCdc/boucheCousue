@@ -122,6 +122,34 @@ form{
 
 }
 
+#registerForm{
+    display: flex;
+    flex-direction: column;
+    padding : 20px;
+    background-color : black;
+
+    border : solid;
+    border-radius: 5px;
+    border-color : white;
+
+    color:white;
+    font-family: sans-serif;
+
+}
+
 #loginForm>input{
     margin-bottom: 20px;
+}
+
+#registerForm>input{
+    margin-bottom: 20px;
+}
+
+.log_redirect{
+    font-size: 15px;
+}
+
+.log_redirect:hover{
+    cursor: pointer;
+    text-decoration: underline;
 }

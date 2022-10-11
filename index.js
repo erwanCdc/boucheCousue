@@ -67,6 +67,10 @@ app.get('/login', (req, res) =>{
 	res.sendFile(mainPath+'/html/login.html')
 })
 
+app.get('/register', (req, res) =>{
+	res.sendFile(mainPath+'/html/register.html')
+})
+
 app.get('/header', (req,res) => {
 	res.sendFile(mainPath+'/html/header.html')
 })
@@ -99,6 +103,26 @@ app.post('/score', (req, res) => {
 	score = req.body.score
 	console.log("score updated : " + score + " for user " + username)
 })
+
+app.post('/test_word', (req, res) => {
+	test = req.body.word
+
+	if (words.includes(test)){
+		console.log("user's input exists in dictionnary !")
+		response = {
+			test:'true'
+		}
+	}
+	else{
+		console.log("user's input doesn't exist in dictionnary !")
+		response = {
+			test:'false'
+		}
+	}
+
+	res.end(JSON.stringify(response));  
+})
+
 
 
 //APIs CONCERNING USERS CONNECTIONS
