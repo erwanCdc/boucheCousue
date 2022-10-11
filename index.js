@@ -36,41 +36,72 @@ const randomNumber = Math.floor(generator() * words.length)
 currentWord = words[randomNumber]
 console.log('Word generated : ' + words[randomNumber])
 
-var score = 0
-var username
-var password
+var score = null
+var username = null
+var password = null
+
+//ALLOW CROSS REQUESTS
+app.use((req, res, next) => {
+	res.setHeader('Access-Control-Allow-Origin', '*')
+	res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content, Accept, Content-Type, Authorization')
+	res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS')
+	next()
+  })
+
 
 app.get('/', (req,res) => {
 	
 })
 
+//APIs RETRIEVING STATIC HTML PAGES
 app.get('/game', (req,res) => {
 	res.sendFile(mainPath+'/html/game.html')
 })
 
+
 app.get('/score', (req, res) => {
 	res.sendFile(mainPath+'/html/score.html')
-})
-
-app.post('/score', (req, res) => {
-	score = req.body.score
-	console.log("score update : " + score)
 })
 
 app.get('/login', (req, res) =>{
 	res.sendFile(mainPath+'/html/login.html')
 })
 
-app.get('/logout', (req, res) =>{
-	username = null
-	password = null
-	score = null
-	res.sendFile(mainPath+'/html/login.html')
-})
-
 app.get('/header', (req,res) => {
 	res.sendFile(mainPath+'/html/header.html')
 })
+
+
+//APIs RETRIEVING DATA FROM SERVER
+
+app.get('/user', (req, res) => {
+	response = {
+		username:username,
+		score:score
+	}
+	console.log("user data : " + JSON.stringify(response))
+	res.end(JSON.stringify(response))
+})
+
+
+app.get('/get_mot', (req, res) => {  
+	response = {  
+		word:currentWord
+	}
+	console.log("today's word : " + JSON.stringify(response))
+	res.end(JSON.stringify(response));  
+})  
+
+
+//APIs UPDATING DATA ON SERVER
+
+app.post('/score', (req, res) => {
+	score = req.body.score
+	console.log("score updated : " + score + " for user " + username)
+})
+
+
+//APIs CONCERNING USERS CONNECTIONS
 
 app.post('/log_user', (req,res) => {
 	username = req.body.username
@@ -80,21 +111,16 @@ app.post('/log_user', (req,res) => {
 	res.sendFile(mainPath+'/html/game.html')
 })
 
-app.get('/user', (req, res) => {
-	response = {  
-		username:username,
-		score:score
-	}
-	console.log(response)
-	res.end(JSON.stringify(response));  
-})  
+app.get('/logout', (req, res) =>{
+	console.log("user disconnected : " + username)
+	username = null
+	password = null
+	score = null
+	res.sendFile(mainPath+'/html/login.html')
+})
 
-app.get('/get_mot', (req, res) => {  
-	response = {  
-		word:currentWord
-	}
-	res.end(JSON.stringify(response));  
-})  
+
+//APIs NETWORK
 
 app.get('/port', (req,res) => {
 	res.send("MOTUS is listening on " + os.hostname() + " port:  " + port)

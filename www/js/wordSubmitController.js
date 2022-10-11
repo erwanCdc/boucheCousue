@@ -1,19 +1,5 @@
 $(document).ready(function(){
 
-    /*
-    //DEFINE AN AUTH/REDIRECT CLASS
-    if (sessionStorage.getItem("username") == null){
-        $.ajax({
-            type: "GET",
-            url: "login",
-            data: { },
-            success: function(data){
-                $('html').html(data);
-            }
-        })
-    }
-    */
-
     var target
     var iterator = 1
     var win = false
