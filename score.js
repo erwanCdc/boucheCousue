@@ -8,11 +8,14 @@ const host = 'localhost:3001'
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.text())
-
 var score = 0
 var username
 var password
-
+app.use((req, res, next) => {
+	              res.header("Access-Control-Allow-Origin", "*");
+	              res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+	              next();
+	  })
 
 app.get('/get_score', (req, res) => {
 	// Retrieves user id

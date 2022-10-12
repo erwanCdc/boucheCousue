@@ -20,7 +20,6 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.text());
 app.use(express.static(mainPath))
 
-
 // Read & store words into an array
 var words = fs.readFileSync('./www/data/liste_francais_utf8.txt').toString().split("\r\n")
 console.log('List Initialized')
