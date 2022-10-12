@@ -21,7 +21,10 @@ $(document).ready(function(){
             return false
         }
         else{
+            $("#password").val('')
+            $("#confirm_password").val('')
             alert("Passwords doesn't match !")
+            return false
         }
 
 
