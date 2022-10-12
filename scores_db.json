@@ -1,0 +1,9 @@
+[
+  { 
+    "user": "root", 
+    "password": "totoro",
+    "number_games": 10,
+    "number_victories": 8,
+    "cumulated_score": 27
+  }
+]
