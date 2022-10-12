@@ -4,6 +4,14 @@ $(document).ready(function(){
     var iterator = 1
     var win = false
 
+    String.prototype.replaceAt = function(index, replacement) {
+        if (index >= this.length) {
+            return this.valueOf();
+        }
+     
+        return this.substring(0, index) + replacement + this.substring(index + 1);
+    }
+
     function init(){
         let word = ""
 
@@ -100,7 +108,9 @@ $(document).ready(function(){
         target = target.toLowerCase()
         submit = submit.toLowerCase()
 
-       for(i=0; i<target.length; i++) {
+        var tmp = target
+
+        for(i=0; i<target.length; i++) {
             if (target[i] == submit[i]){
                 diff += target[i]
             }
@@ -113,6 +123,23 @@ $(document).ready(function(){
                 }
             }
         }
+
+        for (i=0; i<target.length; i++) {
+            if (diff[i] != "?" && diff[i] != "_"){
+                tmp = tmp.replace(tmp[i], "!")
+            }
+        }
+
+        for (i=0; i<target.length; i++) {
+            if (diff[i] == "?"){
+                if (tmp.includes(submit[i])) {
+                    tmp = tmp.replace(tmp[tmp.indexOf(submit[i])], "!")
+                } else {
+                    diff = diff.replaceAt(i, "_")
+                }
+            }
+        }
+        
         return diff
     }
 
@@ -133,7 +160,6 @@ $(document).ready(function(){
 
             if (test == "true"){
                 update_table(submit)
-                    $('#testWord').val('')
                     if (win == true){
                         alert('YOU WIN')
                         sessionStorage.setItem('score', (parseInt(sessionStorage.getItem('score')) + 1))
@@ -151,6 +177,8 @@ $(document).ready(function(){
             else{
                 alert("Your word doesn't exist !")
             }
+
+            $('#testWord').val('')
         }
 
 
