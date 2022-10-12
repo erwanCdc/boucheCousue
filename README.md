@@ -1,11 +1,16 @@
 # Bouche cousue
-## HTTP
+## LANCER LE PROJET
+- Dans le dossier main:
 
-### Requierements
-- npm install express --save
-- npm install seedrandom --save
-- npm install path --save
-- npm install body-parser --save
+`sudo docker build -t index:latest .` /!\ ne pas oublier le point à la fin !
+
+- Dans le dossier db:
+
+`sudo docker build -t score_db:latest .` /
+
+- Depuis la racine du projet:
+
+`sudo docker-compose up`
 
 ## Node
 ### Requierements
