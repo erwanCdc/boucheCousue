@@ -41,115 +41,130 @@ var username = null
 var password = null
 
 //ALLOW CROSS REQUESTS
-app.use((req, res, next) => {
-	res.setHeader('Access-Control-Allow-Origin', '*')
-	res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content, Accept, Content-Type, Authorization')
-	res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS')
-	next()
-  })
+	app.use((req, res, next) => {
+		res.setHeader('Access-Control-Allow-Origin', '*')
+		res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content, Accept, Content-Type, Authorization')
+		res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS')
+		next()
+	})
 
 
-app.get('/', (req,res) => {
-	
-})
+	app.get('/', (req,res) => {
+		
+	})
+
+	app.get('/test_api', (req,res) => {
+		console.log('test')
+	})
+
 
 //APIs RETRIEVING STATIC HTML PAGES
-app.get('/game', (req,res) => {
-	res.sendFile(mainPath+'/html/game.html')
-})
 
+	//this api send the HTML brick concerning the motus game
+	app.get('/game', (req,res) => {
+		res.sendFile(mainPath+'/html/game.html')
+	})
 
-app.get('/score', (req, res) => {
-	res.sendFile(mainPath+'/html/score.html')
-})
+	//this api send the HTML brick concerning the player's data
+	app.get('/score', (req, res) => {
+		res.sendFile(mainPath+'/html/score.html')
+	})
 
-app.get('/login', (req, res) =>{
-	res.sendFile(mainPath+'/html/login.html')
-})
+	//this api send the HTML brick concerning the login
+	app.get('/login', (req, res) =>{
+		res.sendFile(mainPath+'/html/login.html')
+	})
 
-app.get('/register', (req, res) =>{
-	res.sendFile(mainPath+'/html/register.html')
-})
+	//this api send the HTML brick concerning the registration
+	app.get('/register', (req, res) =>{
+		res.sendFile(mainPath+'/html/register.html')
+	})
 
-app.get('/header', (req,res) => {
-	res.sendFile(mainPath+'/html/header.html')
-})
+	//this api send the HTML brick used as header in our global HTML page
+	app.get('/header', (req,res) => {
+		res.sendFile(mainPath+'/html/header.html')
+	})
 
 
 //APIs RETRIEVING DATA FROM SERVER
 
-app.get('/user', (req, res) => {
-	response = {
-		username:username,
-		score:score
-	}
-	console.log("user data : " + JSON.stringify(response))
-	res.end(JSON.stringify(response))
-})
+	//this api send a JSON object containing user's data
+	app.get('/user', (req, res) => {
+		response = {
+			username:username,
+			score:score
+		}
+		console.log("user data : " + JSON.stringify(response))
+		res.end(JSON.stringify(response))
+	})
 
+	//this api send a JSON object containing the word of the day
+	app.get('/get_mot', (req, res) => {  
+		response = {  
+			word:currentWord
+		}
+		console.log("today's word : " + JSON.stringify(response))
+		res.end(JSON.stringify(response));  
+	})  
 
-app.get('/get_mot', (req, res) => {  
-	response = {  
-		word:currentWord
-	}
-	console.log("today's word : " + JSON.stringify(response))
-	res.end(JSON.stringify(response));  
-})  
+	//this api send a boolean, true if the submited word exists in our dictionnary, false else.
+	app.post('/test_word', (req, res) => {
+		test = req.body.word
+	
+		if (words.includes(test)){
+			console.log("user's input exists in dictionnary !")
+			response = {
+				test:'true'
+			}
+		}
+		else{
+			console.log("user's input doesn't exist in dictionnary !")
+			response = {
+				test:'false'
+			}
+		}
+	
+		res.end(JSON.stringify(response));  
+	})
 
 
 //APIs UPDATING DATA ON SERVER
 
-app.post('/score', (req, res) => {
-	score = req.body.score
-	console.log("score updated : " + score + " for user " + username)
-})
-
-app.post('/test_word', (req, res) => {
-	test = req.body.word
-
-	if (words.includes(test)){
-		console.log("user's input exists in dictionnary !")
-		response = {
-			test:'true'
-		}
-	}
-	else{
-		console.log("user's input doesn't exist in dictionnary !")
-		response = {
-			test:'false'
-		}
-	}
-
-	res.end(JSON.stringify(response));  
-})
+	//this api update the score value when a user win
+	app.post('/score', (req, res) => {
+		score = req.body.score
+		console.log("score updated : " + score + " for user " + username)
+	})
 
 
+//APIs CONCERNING USERS ACCESS
 
-//APIs CONCERNING USERS CONNECTIONS
+	//this api update {username/password} and define the "session"
+	app.post('/log_user', (req,res) => {
+		username = req.body.username
+		password = req.body.password
+		score = 0
+		console.log("user authenticate : " + username)
+		res.sendFile(mainPath+'/html/game.html')
+	})
 
-app.post('/log_user', (req,res) => {
-	username = req.body.username
-	password = req.body.password
-	score = 0
-	console.log("user authenticate : " + username)
-	res.sendFile(mainPath+'/html/game.html')
-})
-
-app.get('/logout', (req, res) =>{
-	console.log("user disconnected : " + username)
-	username = null
-	password = null
-	score = null
-	res.sendFile(mainPath+'/html/login.html')
-})
+	//this api delete {username/password} and abort the "session"
+	app.get('/logout', (req, res) =>{
+		console.log("user disconnected : " + username)
+		username = null
+		password = null
+		score = null
+		res.sendFile(mainPath+'/html/login.html')
+	})
 
 
 //APIs NETWORK
 
-app.get('/port', (req,res) => {
-	res.send("MOTUS is listening on " + os.hostname() + " port:  " + port)
-})
+	//these apis send this server's port (get/listen)
+	app.get('/port', (req,res) => {
+		res.send("MOTUS is listening on " + os.hostname() + " port:  " + port)
+	})
 
-app.listen(port, () => {
-	console.log('Application running on ' + os.hostname() + " port : " + port)
-})
+	app.listen(port, () => {
+		console.log('Application running on ' + os.hostname() + " port : " + port)
+	})

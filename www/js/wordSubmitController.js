@@ -4,6 +4,7 @@ $(document).ready(function(){
     var iterator = 1
     var win = false
 
+    //strings are immutables in JavaScript. This function allows us to change a character in a string
     String.prototype.replaceAt = function(index, replacement) {
         if (index >= this.length) {
             return this.valueOf();
@@ -12,6 +13,9 @@ $(document).ready(function(){
         return this.substring(0, index) + replacement + this.substring(index + 1);
     }
 
+    //this function is called when a user accessed the game page : 
+    //it makes an ajax request to get the word of the day and define the HTML input size 
+    //(so it's mandatory for the user to print a word with the same size)
     function init(){
         let word = ""
 
@@ -30,6 +34,7 @@ $(document).ready(function(){
 
     }
 
+    //this function generate the HTML table containing user's resposnes
     function generate_table(){
         var table = document.getElementById("tries")
 
@@ -66,6 +71,14 @@ $(document).ready(function(){
 
     }
 
+    /**
+     * this function update the HTML table after one try from the user 
+     * as the true motus game, the box become : 
+     *              1. green if the letter is at the right position
+     *              2. orange if the letter exists but isn't at the right place
+     *              3. red else
+     */
+    
     function update_table(submit){
         let id = ('row'+iterator)
         var boxes = document.getElementById(id).childNodes
@@ -102,6 +115,11 @@ $(document).ready(function(){
         
     }
 
+    /**
+     * 
+     * this function compare the submited word with the word of the day
+     * then, it returns a comparison string
+     */
     function word_comparison(submit){
     
         var diff = ""
@@ -144,6 +162,11 @@ $(document).ready(function(){
     }
 
 
+    /**
+     * this process is called when a user submit a word
+     * if the word exists in our server dictionnary, then it will do the comparison between the submited word and the word of the day and update table view
+     * 
+     */
     $('#gamePlace').submit(function( event ) {
         if (!win){
             var submit = $('#testWord').val().normalize('NFD').replace(/[\u0300-\u036f]/g, '')
@@ -185,7 +208,6 @@ $(document).ready(function(){
 
         return false
     })
-
 
 
     target = init()

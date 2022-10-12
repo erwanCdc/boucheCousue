@@ -68,8 +68,8 @@ body{
 
 #scoreTable{
     border: solid;
-    width : 60%;
-    height: 60%;
+    width : 600px;
+    height: 400px;
 }
 
 td{

@@ -37,12 +37,26 @@
 </div>
 
 <div id="head2" class="head">
-
+    
 </div>
 
 
 <div id="head3" class="head">
-   
+    <button id="test_api">TEST_API</button>
+    <script>
+        $('#test_api').click(() =>{
+            $.ajax({
+                type: "GET",
+                url: "test_api",
+                success: (result) =>{
+                    
+                },
+                async: false
+            })
+
+            return false
+        })
+    </script>
 </div>
 
 <div id="head4" class="head">
