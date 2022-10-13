@@ -2,11 +2,11 @@
 ## LANCER LE PROJET
 - Dans le dossier main:
 
-`sudo docker build -t index:latest .` /!\ ne pas oublier le point à la fin !
+`sudo docker build -t main:latest .` /!\ ne pas oublier le point à la fin !
 
 - Dans le dossier db:
 
-`sudo docker build -t score_db:latest .` /
+`sudo docker build -t db:latest .` /
 
 - Depuis la racine du projet:
 
