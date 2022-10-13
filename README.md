@@ -23,6 +23,24 @@
 - If you updated the program, you shall update all images with: `sudo docker-compose build`
 
 ## TECHNICAL DOCUMENTATION
+### Project tree
+**BOUCHECOUSUE** run three different servers to function:
+- **main**: manages the game.
+- **db**: manages the score database and related computation.
+- **auth**: manages authentication database and related computation.
+
+### ToDo
+Some ideas have not been implemented and the project contain some known security breaches.
+
+#### Features
+Please find below an exhaustive list of the features not implemented for the moment.
+- TEST
+
+#### Security breaches
+Please find below the security breaches we have indentified. We might have not identified all breaches, fell free to contact us if you find one.
+- Passwords are stored in a json file in the **auth** server.
+
+### //
 ``` mermaid
 sequenceDiagram
     participant Client
@@ -32,3 +50,9 @@ sequenceDiagram
     Client->>NodeJS: Send word
     NodeJS->>Database: Test
 ```
+
+## USEFULL TOOLS
+Here's a list of the usefull tools we used to develop this projet:
+- [Git](https://git-scm.com/) & [Github](https://github.com/): versioning & collaboration
+- [Notion](https://www.notion.so): project progress & collaboration
+- [Mermaid](https://mermaid.live): fast and Github-markdown-compatible diagrams editor
