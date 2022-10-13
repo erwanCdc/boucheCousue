@@ -12,9 +12,9 @@
     - [npm](https://www.npmjs.com/)
 - Download this GitHub repository code
 - Run the setup script: `sudo sh setup.sh`. This script will:
-    - update npm
-    - install dependencies
-    - build images
+    1. update npm
+    2. install dependencies
+    3. build images
 
 ## RUN & MAINTAIN
 - To run the app:
