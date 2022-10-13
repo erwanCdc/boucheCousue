@@ -54,69 +54,95 @@ var password
         res.end(JSON.stringify(result))
     })
 
-	//this api update {username/password} and define the "session"
+	//this api authenticate a user connexion
 	app.post('/log_user', (req,res) => {
-		username = req.body.username
-		password = req.body.password
-		console.log("user authenticate : " + username)
 
-        http.get('http://main_service:3000/game', (page) => {
-             
-            var bodyChunks = [];
-            page.on('data', function(chunk) {
-                
-                bodyChunks.push(chunk);
-            }).on('end', function() {
-                var body = Buffer.concat(bodyChunks);
-                res.send(body)
-                
-            })
-            
+		const users_db = require(db_path)
+        username = req.body.username
+        password = req.body.password
+        var verifu = false
+        var verifp = false
+
+        users_db.forEach(element => {
+
+            if (element.user == username){
+                verifu = true
+                if (element.password == password) {
+                    verifp = true
+                }
+            }
         })
-		
+
+
+        if (verifu && verifp){
+
+            console.log("user authenticated : " + username)
+
+            http.get('http://main_service:3000/game', (page) => {
+             
+                var bodyChunks = [];
+                page.on('data', function(chunk) {
+                    
+                    bodyChunks.push(chunk);
+                }).on('end', function() {
+                    var body = Buffer.concat(bodyChunks);
+                    res.send(body)
+                    
+                })
+            })
+        }
+        else {
+
+            if (verifu && !verifp){
+
+                console.log("wrong user password : " + username)
+
+            } 
+            else {
+
+
+            }
+
+        }
+            
 	})
 
 
 	app.post('/register_user', (req,res) => {
 		username = req.body.username
 		password = req.body.password
-		
         const users_db = require(db_path)
-
         var verifu = false
     
-    
-        //check if username already exists
+        //check if username already exists in db
         users_db.forEach(element => {
-            if (element.user == user){
+            if (element.user == username){
                 verifu = true
             }
-    
         })
-    
     
         if (verifu){
     
-            console.log("On t'a volé ton nom d'utilisateur... Ou tu as déjà un compte débilos")
+            //renvoyer une erreur au client
     
         } 
         else {
     
             let new_user = {
-                user: user,
+                user: username,
                 password: password
             }
-    
             users_db.push(new_user)
-    
+            users_db.forEach(element => {
+                console.log(element.user)
+            })
     
             fs.writeFile(db_path, JSON.stringify(users_db), err => {
                 if (err){
                     throw err
                 } 
                 else{
-
-                    console.log("Utilisateur ajouté, va faire mumuse")
+                    console.log("user created : " + username)
 
                     http.get('http://main_service:3000/game', (page) => {
              
@@ -129,15 +155,10 @@ var password
                             res.send(body)
                             
                         })
-                        
                     })
                 }
-                
             })
-    
         }
-        
-		
 	})
 
 	//this api delete {username/password} and abort the "session"

@@ -1,5 +1,14 @@
 $(document).ready(function(){
 
+    $.ajax({
+        type: "POST",
+        url: "http://localhost:3001/init_user",
+        data: {username: sessionStorage.getItem("username")},
+        success: function(result){
+            
+        }
+    })
+
     var target
     var iterator = 1
     var win = false
@@ -185,16 +194,17 @@ $(document).ready(function(){
                 update_table(submit)
                     if (win == true){
                         alert('YOU WIN')
-                        sessionStorage.setItem('score', (parseInt(sessionStorage.getItem('score')) + 1))
                         
                         $.ajax({
                             type: "POST",
-                            url: "score",
-                            data: {score : sessionStorage.getItem('score')},
+                            url: "http://localhost:3001/update_score",
+                            data: {user : sessionStorage.getItem('username'),
+                                    nb_try: (iterator-1), win:1},
                             success: function(page){
                                 $('#page').html(page);
                             }
                         })
+
                     }
                 }
             
@@ -210,8 +220,9 @@ $(document).ready(function(){
             
             $.ajax({
                 type: "POST",
-                url: "score",
-                data: {score : sessionStorage.getItem('score')},
+                url: "http://localhost:3001/update_score",
+                data: {user : sessionStorage.getItem('username'),
+                        nb_try: 0, win:0},
                 success: function(page){
                     $('#page').html(page);
                 }

@@ -2,10 +2,15 @@
 const express = require('express')
 const os = require('os')
 const bodyParser = require('body-parser')
+const fs = require("fs")
+const http = require('http')
 
 // Port
 const port = process.env.PORT || 3001
 const host = 'localhost:3001'
+
+// Database
+const db_path = './scores.json'
 
 // App
 const app = express()
@@ -18,30 +23,154 @@ app.use((req, res, next) => {
 })
 
 // Score database management variables & functions
-var score = 1000
-var username 
-var password
+var score
+
+
+function update_db(user, attribute, value){
+
+    const scores_db = require(db_path)
+
+    scores_db.forEach(element => {
+
+        if (element.user == user){
+
+            element[attribute] = element[attribute] + value
+
+        }
+    })
+    fs.writeFile(db_path, JSON.stringify(scores_db), err => {
+        if (err){
+			throw err
+		} 
+		else{
+			console.log("La valeur de l'attribut " + attribute + " pour l'utilisateur " + user + " e été mise à jour")
+		}
+        
+    })
+}
+
+
+app.post('/update_score', (req,res) => {
+
+	var user = req.body.user
+
+	const scores_db = require(db_path)
+	scores_db.forEach(element => {
+		if (element.user == user){
+			user_json = element
+		}
+	})
+	console.log(user_json)
+	
+	update_db(user,'number_victories', parseInt(req.body.win))
+	update_db(user, 'number_games', 1)
+	update_db(user, 'cumulated_score', parseInt(req.body.nb_try))
+
+	scores_db.forEach(element => {
+		if (element.user == user){
+			user_json = element
+		}
+	})
+
+	console.log(user_json)
+
+	
+	http.get('http://main_service:3000/score', (page) => {
+             
+		var bodyChunks = [];
+		page.on('data', function(chunk) {
+			
+			bodyChunks.push(chunk);
+		}).on('end', function() {
+			var body = Buffer.concat(bodyChunks);
+			res.send(body)
+			
+		})
+	})
+
+})
 
 
 app.post('/get_score', (req, res) => {
-	// Retrieves user id
-	//user = req.body.id
 
-	// Get score from
+	const scores_db = require(db_path)
 
-	username = req.body.username
+	let user = req.body.username
+	var user_json
 
-	console.log('Score: ', score)
-	
-	result = {score:score}
+	scores_db.forEach(element => {
+		if (element.user == user){
+			user_json = element
+		}
+	})
 
-	console.log(result)
+	let val
+	if (user_json.number_victories != 0){
+		val = Math.round(user_json.cumulated_score/user_json.number_victories*10)/10
+	}
+	else {
+		val = 0
+	}
 
-	result = JSON.stringify(result)
+	result = {
+		score: val
+	}
 
-	console.log(result)
+	res.send(JSON.stringify(result))
 
-	res.send(result)
+
+})
+
+
+app.post('/init_user', (req,res) => {
+
+
+	const scores_db = require(db_path)
+	var verifu = false
+	var user = req.body.username
+
+
+	scores_db.forEach(element => {
+		if (element.user == user){
+			verifu = true
+		}
+	})
+
+
+	if (!verifu){
+
+		let new_user = {
+			user: user,
+			number_games: 0,
+			number_victories: 0,
+			cumulated_score: 0,
+			played: 0
+		}
+
+
+
+		scores_db.push(new_user)
+
+
+
+		fs.writeFile(db_path, JSON.stringify(scores_db), err => {
+
+			if (err) {
+				throw err
+			}
+			else{
+				console.log("user " + user + " initialized")
+
+				scores_db.forEach((elm) => {
+					console.log(elm.user)
+				})
+				
+
+			}
+		})
+
+	}
+
 })
 
 // Listening

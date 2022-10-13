@@ -108,17 +108,6 @@ var score = null
 	})
 
 
-//APIs UPDATING DATA ON SERVER
-
-	//this api update the score value when a user win
-	app.post('/score', (req, res) => {
-		score = req.body.score
-		console.log("score updated : " + score + " for user " + username)
-		res.sendFile(mainPath+'/html/score.html')
-	})
-
-
-
 
 
 //APIs NETWORK

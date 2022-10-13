@@ -4,7 +4,6 @@ $(document).ready(function(){
 
         sessionStorage.setItem("username", $("#username").val())
         sessionStorage.setItem("password", $("#password").val())
-        sessionStorage.setItem("score", 0)
 
 
         $.ajax({

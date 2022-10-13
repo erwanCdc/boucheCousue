@@ -5,7 +5,6 @@ $(document).ready(function(){
         if ($("#password").val() == $("#confirm_password").val()){
             sessionStorage.setItem("username", $("#username").val())
             sessionStorage.setItem("password", $("#password").val())
-            sessionStorage.setItem("score", 0)
     
     
             $.ajax({
