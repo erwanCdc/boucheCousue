@@ -18,20 +18,25 @@ app.use((req, res, next) => {
 })
 
 // Score database management variables & functions
-var score
-var username
+var score = 1000
+var username 
 var password
-app.get('/get_score', (req, res) => {
+app.post('/get_score', (req, res) => {
 	// Retrieves user id
 	//user = req.body.id
 
 	// Get score from
+
+	username = req.body.username
+
 	console.log('Score: ', score)
 	
 	result = {score:score}
+
 	console.log(result)
 
 	result = JSON.stringify(result)
+
 	console.log(result)
 
 	res.send(result)
