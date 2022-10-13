@@ -14,4 +14,18 @@ echo "#### AUTH DEPENDENCIES ####"
 cd ../auth
 npm install express os body-parser
 
-echo "Setup done. To run the project, run: sudo sh run.sh"
+echo "#### BUILDING AUTH ####"
+cd auth
+docker build -t auth:latest .
+ 
+echo "#### BUILDING MAIN ####"
+cd ../main
+docker build -t main:latest .
+ 
+echo "#### BUILDING DATABASE ####"
+cd ../db
+docker build -t db:latest .
+
+echo "Setup done."
+echo "To run the project, run: sudo docker-compose up"
+echo "To update images, run: sudo sh update.sh"
