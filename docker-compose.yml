@@ -1,7 +1,14 @@
 version: "3.7"
 
 services:
-  index_service:
+  auth_service:
+    image: auth
+    container_name: auth
+    ports:
+      - "2999:2999"
+    restart: always
+    init: true
+  main_service:
     image: main
     container_name: main
     ports:
