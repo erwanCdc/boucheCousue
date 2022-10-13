@@ -1,12 +1,22 @@
 echo "#### STOP RUNNING CONTAINERS ####"
+docker rm auth -f
 docker rm main -f
 docker rm db -f
-cd main
+
+
+echo "#### BUILDING AUTH ####"
+cd auth
+docker build -t auth:latest .
+
 echo "#### BUILDING MAIN ####"
+cd ../main
 docker build -t main:latest .
-cd ../db
+
 echo "#### BUILDING DATABASE ####"
+cd ../db
 docker build -t db:latest .
-cd ..
+
+
 echo "#### BUILD DONE ####"
+cd ..
 docker-compose up
