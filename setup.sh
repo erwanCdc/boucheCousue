@@ -1,6 +1,6 @@
 # Setup the project by installing all the needed npm dependencies
-echo "#### INSTALL DOCKER ####"
-sudo apt install docker docker-compose
+echo "#### UPDATE NPM ####"
+npm install -g npm
 
 echo "#### MAIN DEPENDENCIES ####"
 cd main
