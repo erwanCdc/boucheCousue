@@ -2,15 +2,15 @@ version: "3.7"
 
 services:
   index_service:
-    image: index
-    container_name: index
+    image: main
+    container_name: main
     ports:
       - "3000:3000"
     restart: always
     init: true
-  score-db_service:
-    image: score_db
-    container_name: score_db
+  db_service:
+    image: db
+    container_name: db
     ports:
       - "3001:3001"
     restart: always
