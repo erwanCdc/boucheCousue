@@ -130,6 +130,7 @@ var password = null
 	app.post('/score', (req, res) => {
 		score = req.body.score
 		console.log("score updated : " + score + " for user " + username)
+		res.sendFile(mainPath+'/html/score.html')
 	})
 
 

@@ -191,7 +191,8 @@ $(document).ready(function(){
                             type: "POST",
                             url: "score",
                             data: {score : sessionStorage.getItem('score')},
-                            success: function(data){
+                            success: function(page){
+                                $('#page').html(page);
                             }
                         })
                     }
@@ -204,7 +205,18 @@ $(document).ready(function(){
             $('#testWord').val('')
         }
 
-
+        if (iterator == 6){
+            alert("You lose!")
+            
+            $.ajax({
+                type: "POST",
+                url: "score",
+                data: {score : sessionStorage.getItem('score')},
+                success: function(page){
+                    $('#page').html(page);
+                }
+            })
+        }
 
         return false
     })
