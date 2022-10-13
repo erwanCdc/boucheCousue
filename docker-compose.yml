@@ -2,21 +2,24 @@ version: "3"
 
 services:
   auth_service:
-    image: auth
+    build:
+      context: ./auth
     container_name: auth
     ports:
       - "2999:2999"
     restart: always
     init: true
   main_service:
-    image: main
+    build:
+      context: ./main
     container_name: main
     ports:
       - "3000:3000"
     restart: always
     init: true
   db_service:
-    image: db
+    build:
+      context: ./db
     container_name: db
     ports:
       - "3001:3001"
