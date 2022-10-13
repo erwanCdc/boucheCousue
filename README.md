@@ -1,16 +1,8 @@
 # Bouche cousue
 ## LANCER LE PROJET
-- Dans le dossier main:
-
-`sudo docker build -t main:latest .` /!\ ne pas oublier le point à la fin !
-
-- Dans le dossier db:
-
-`sudo docker build -t db:latest .` /
-
 - Depuis la racine du projet:
 
-`sudo docker-compose up`
+`sudo sh reload-images.sh`
 
 ## Node
 ### Requierements
