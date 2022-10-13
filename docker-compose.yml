@@ -1,4 +1,4 @@
-version: "3.7"
+version: "3"
 
 services:
   auth_service:
@@ -22,3 +22,11 @@ services:
       - "3001:3001"
     restart: always
     init: true
+    #  loki:
+    #image: grafana/loki
+    #container_name: loki
+    #ports:
+    # - "3100:3100"
+    #restart: unless-stopped
+    #networks:
+    #  - monitor-net
