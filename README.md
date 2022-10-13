@@ -51,8 +51,12 @@ sequenceDiagram
     NodeJS->>Database: Test
 ```
 
-## USEFULL TOOLS
+## USEFUL TOOLS
 Here's a list of the usefull tools we used to develop this projet:
 - [Git](https://git-scm.com/) & [Github](https://github.com/): versioning & collaboration
 - [Notion](https://www.notion.so): project progress & collaboration
 - [Mermaid](https://mermaid.live): fast and Github-markdown-compatible diagrams editor
+
+## LICENSE
+This project is licensed under the **BSD 3-Clause License**. Feel free to edit and distribute this app as you like.
+See [LICENSE](https://github.com/alexisjapas/boucheCousue/blob/main/LICENSE) for more information.
