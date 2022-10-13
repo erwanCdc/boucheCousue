@@ -1,4 +1,7 @@
 # Bouche cousue
+
+![](imgs/game_example.gif)
+
 ## LANCER LE PROJET
 - Depuis la racine du projet:
 
