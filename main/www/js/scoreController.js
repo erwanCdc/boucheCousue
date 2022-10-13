@@ -4,7 +4,7 @@ $(document).ready(function(){
 
     $.ajax({
         type: "GET",
-        url: "user",
+        url: "http://localhost:2999/user_info",
         success: (result) =>{
             console.log(result)
             user = JSON.parse(result).username

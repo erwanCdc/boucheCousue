@@ -33,8 +33,7 @@ currentWord = words[randomNumber]
 console.log('Word generated : ' + words[randomNumber])
 
 var score = null
-var username = null
-var password = null
+
 
 //ALLOW CROSS REQUESTS
 	app.use((req, res, next) => {
@@ -48,11 +47,6 @@ var password = null
 	app.get('/', (req,res) => {
 		
 	})
-
-	app.get('/test_api', (req,res) => {
-		console.log('test')
-	})
-
 
 //APIs RETRIEVING STATIC HTML PAGES
 
@@ -83,16 +77,6 @@ var password = null
 
 
 //APIs RETRIEVING DATA FROM SERVER
-
-	//this api send a JSON object containing user's data
-	app.get('/user', (req, res) => {
-		response = {
-			username:username,
-			score:score
-		}
-		console.log("user data : " + JSON.stringify(response))
-		res.end(JSON.stringify(response))
-	})
 
 	//this api send a JSON object containing the word of the day
 	app.get('/get_mot', (req, res) => {  
@@ -134,25 +118,7 @@ var password = null
 	})
 
 
-//APIs CONCERNING USERS ACCESS
 
-	//this api update {username/password} and define the "session"
-	app.post('/log_user', (req,res) => {
-		username = req.body.username
-		password = req.body.password
-		score = 0
-		console.log("user authenticate : " + username)
-		res.sendFile(mainPath+'/html/game.html')
-	})
-
-	//this api delete {username/password} and abort the "session"
-	app.get('/logout', (req, res) =>{
-		console.log("user disconnected : " + username)
-		username = null
-		password = null
-		score = null
-		res.sendFile(mainPath+'/html/login.html')
-	})
 
 
 //APIs NETWORK

@@ -21,6 +21,8 @@ app.use((req, res, next) => {
 var score = 1000
 var username 
 var password
+
+
 app.post('/get_score', (req, res) => {
 	// Retrieves user id
 	//user = req.body.id
