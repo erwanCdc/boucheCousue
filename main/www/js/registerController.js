@@ -10,7 +10,7 @@ $(document).ready(function(){
     
             $.ajax({
                 type: "POST",
-                url: "log_user",
+                url: "http://localhost:2999/log_user",
                 data: {username:sessionStorage.getItem("username"), 
                 password:sessionStorage.getItem("password")},
                 success: function(page){

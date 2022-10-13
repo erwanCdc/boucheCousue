@@ -4,10 +4,10 @@
         $("#scoreButton").click(function(){
             $.ajax({
                         type: "GET",
-                        url: "user",
+                        url: "http://localhost:2999/is_logged",
                         success: (result) =>{
                             
-                            if (JSON.parse(result).username != null) {
+                            if (JSON.parse(result).val == 'true') {
                                 $.ajax({
                                     type: "GET",
                                     url: "score",
@@ -52,10 +52,10 @@
         $('#game').click(function(){
             $.ajax({
                         type: "GET",
-                        url: "user",
+                        url: "http://localhost:2999/is_logged",
                         success: (result) =>{
                             
-                            if (JSON.parse(result).username != null) {
+                            if (JSON.parse(result).val == 'true') {
                                 $.ajax({
                                     type: "GET",
                                     url: "game",
@@ -102,10 +102,10 @@
         $('#logout').click(function(){
         $.ajax({
             type: "GET",
-            url: "logout",
+            url: "http://localhost:2999/logout",
             success: (page) =>{
-                sessionStorage.clear()
                 $('#page').html(page)
+                sessionStorage.clear()  
             },
             async: false
         })
