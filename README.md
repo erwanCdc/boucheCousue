@@ -7,7 +7,7 @@
 
 ## SUMMARY
 [SETUP](#SETUP)
-[RUN & MAINTAIN](RUN & MAINTAIN)
+[RUN & MAINTAIN](#RUN & MAINTAIN)
 
 ## SETUP
 - Requierements:
