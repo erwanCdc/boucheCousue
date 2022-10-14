@@ -131,6 +131,7 @@ Here's a list of the usefull tools we used to develop this projet:
 - [Notion](https://www.notion.so): project progress & collaboration
 - [Mermaid](https://mermaid.live): fast and Github-markdown-compatible diagrams editor
 
+---
 <p align="center">
     <img src="imgs/cat.gif" alt="Catty cat" />
 </p>
