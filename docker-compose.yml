@@ -28,11 +28,23 @@ services:
     restart: always
     init: true
 
-    #  loki:
-    #image: grafana/loki
-    #container_name: loki
-    #ports:
-    # - "3100:3100"
-    #restart: unless-stopped
-    #networks:
-    #  - monitor-net
+  grafana:
+    image: grafana/grafana
+    container_name: grafana
+    ports:
+      - "4000:4000"
+    restart: unless-stopped
+    networks:
+      - monitor-net
+
+  loki:
+    image: grafana/loki
+    container_name: loki
+    ports:
+      - "4001:4001"
+    restart: unless-stopped
+    networks:
+      - monitor-net
+
+networks:
+  monitor-net:
