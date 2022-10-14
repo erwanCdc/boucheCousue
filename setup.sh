@@ -14,9 +14,6 @@ echo "#### AUTH DEPENDENCIES ####"
 cd ../auth
 npm install express os body-parser
 
-echo "#### GENERATE IMAGES ####"
-docker-compose build
-
 echo "Setup done."
 echo "To run the project, run: sudo docker-compose up"
-echo "To update images, run: sudo sh update.sh"
+echo "To update images, run: sudo docker-compose build"

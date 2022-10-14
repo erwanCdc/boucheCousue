@@ -1,4 +1,4 @@
-version: "3"
+version: "3.7"
 
 services:
   auth_service:
@@ -9,6 +9,7 @@ services:
       - "2999:2999"
     restart: always
     init: true
+
   main_service:
     build:
       context: ./main
@@ -17,14 +18,16 @@ services:
       - "3000:3000"
     restart: always
     init: true
-  db_service:
+
+  score_service:
     build:
       context: ./db
-    container_name: db
+    container_name: score
     ports:
       - "3001:3001"
     restart: always
     init: true
+
     #  loki:
     #image: grafana/loki
     #container_name: loki
