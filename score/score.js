@@ -27,15 +27,11 @@ app.use((req, res, next) => {
 
 // GENERIC FUNCTION USED TO UDPATE A SPECIFIED ATTRIBUTE OF A USER
 function update_db(user, attribute, value){
-
     const scores_db = require(db_path)
 
     scores_db.forEach(element => {
-
         if (element.user == user){
-
             element[attribute] = element[attribute] + value
-
         }
     })
     fs.writeFile(db_path, JSON.stringify(scores_db), err => {
@@ -45,7 +41,6 @@ function update_db(user, attribute, value){
 		else{
 			console.log("La valeur de l'attribut " + attribute + " pour l'utilisateur " + user + " e été mise à jour")
 		}
-        
     })
 }
 
@@ -64,7 +59,6 @@ function update_db(user, attribute, value){
 	 * this api send the HTML brick displayed for a user who already played today
 	 */
 	app.post('/already_played', (req,res) => {
-
 		const scores_db = require(db_path)
 
 		let user = req.body.username
@@ -125,7 +119,6 @@ function update_db(user, attribute, value){
 	 * these are displayed in the score page
 	 */
 	app.post('/get_score', (req, res) => {
-
 		const scores_db = require(db_path)
 
 		let user = req.body.username
@@ -161,8 +154,6 @@ function update_db(user, attribute, value){
 		}
 
 		res.send(JSON.stringify(result))
-
-
 	})
 
 	/**
@@ -170,8 +161,6 @@ function update_db(user, attribute, value){
 	 * if not, it's created
 	 */
 	app.post('/init_user', (req,res) => {
-
-
 		const scores_db = require(db_path)
 		var verifu = false
 		var user = req.body.username
@@ -183,7 +172,6 @@ function update_db(user, attribute, value){
 		})
 
 		if (!verifu){
-
 			let new_user = {
 				user: user,
 				number_games: 0,
@@ -195,7 +183,6 @@ function update_db(user, attribute, value){
 			scores_db.push(new_user)
 
 			fs.writeFile(db_path, JSON.stringify(scores_db), err => {
-
 				if (err) {
 					throw err
 				}

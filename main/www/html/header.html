@@ -7,7 +7,6 @@
                         url: "http://localhost:2999/is_logged",
                         data:{username:sessionStorage.getItem('username')},
                         success: (result) =>{
-                            
                             if (JSON.parse(result).val == 'true') {
                                 $.ajax({
                                     type: "GET",
@@ -29,7 +28,6 @@
                                     async: false
                                 })
                             }
-                            
                         },
                         async: false
                     })
@@ -38,17 +36,13 @@
 </div>
 
 <div id="head2" class="head">
-    
 </div>
 
-
 <div id="head3" class="head">
-
 </div>
 
 <div id="head4" class="head">
     <button id="game">Game</button>
-
     <script>
         $('#game').click(function(){
             $.ajax({
@@ -56,9 +50,7 @@
                         url: "http://localhost:2999/is_logged",
                         data:{username:sessionStorage.getItem('username')},
                         success: (result) =>{
-                            
                             if (JSON.parse(result).val == 'true') {
-
                                 $.ajax({
                                     type: "POST",
                                     url: "http://localhost:3001/already_played",
@@ -99,7 +91,6 @@
                                     async: false
                                 })
                             }
-                            
                         },
                         async: false
                     })
@@ -107,20 +98,14 @@
     </script>
 </div>
 
-
 <div id="head5" class="head">
-
 </div>
 
-
-
 <div id="head6" class="head">
-
 </div>
 
 <div id="head7" class="head">
     <button id="logout">Log Out</button>
-
     <script>
         $('#logout').click(function(){
         $.ajax({
@@ -133,7 +118,6 @@
             },
             async: false
         })
-
         return false
     })
     </script>

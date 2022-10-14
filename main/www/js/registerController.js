@@ -1,11 +1,8 @@
 $(document).ready(function(){
-
     $('#registerForm').submit(function( event ) {
-
         if ($("#password").val() == $("#confirm_password").val()){
             sessionStorage.setItem("username", $("#username").val())
             sessionStorage.setItem("password", $("#password").val())
-    
     
             $.ajax({
                 type: "POST",
@@ -46,10 +43,8 @@ $(document).ready(function(){
                     else{
                         alert('Account already exists !')
                     }
-
                 }
             })
-
             return false
         }
         else{
@@ -58,10 +53,5 @@ $(document).ready(function(){
             alert("Passwords doesn't match !")
             return false
         }
-
-
-
-
     })
-
 })

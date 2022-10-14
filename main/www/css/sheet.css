@@ -60,7 +60,6 @@ body{
 
 
 #tries{
-
     height: 400px;
     width : 600px;
     border-color: blue;
@@ -80,7 +79,6 @@ td{
     font-size: 150%;
     width:50px;
     height: 60px;
-
 }
 
 form{
@@ -117,7 +115,6 @@ form{
 
     color:white;
     font-family: sans-serif;
-
 }
 
 #registerForm{
@@ -132,7 +129,6 @@ form{
 
     color:white;
     font-family: sans-serif;
-
 }
 
 #loginForm>input{

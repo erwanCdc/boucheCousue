@@ -1,11 +1,9 @@
 $(document).ready(function(){
-
     $.ajax({
         type: "POST",
         url: "http://localhost:3001/init_user",
         data: {username: sessionStorage.getItem("username")},
         success: function(result){
-            
         }
     })
 
@@ -42,7 +40,6 @@ $(document).ready(function(){
         document.getElementById('testWord').setAttribute('minlength', word.length)
 
         return word.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
-
     }
 
     /**
@@ -99,12 +96,8 @@ $(document).ready(function(){
         let k = 0
         var delayInMilliseconds = 500; //1 second
 
-
-
-
         boxes.forEach((node,i) => {
            setTimeout(() => {
-
                 node.innerHTML = submit[k].toUpperCase()
                 let color = 'green'
                 
@@ -124,8 +117,6 @@ $(document).ready(function(){
         iterator = iterator + 1
 
         if (comp.toLowerCase() == submit.toLowerCase()) win = true
-
-        
     }
 
     /**
@@ -134,7 +125,6 @@ $(document).ready(function(){
      * (? => letter exists but isn't at the right place, _ => letter doesn't exist)
      */
     function word_comparison(submit){
-    
         var diff = ""
         target = target.toLowerCase()
         submit = submit.toLowerCase()
@@ -174,7 +164,6 @@ $(document).ready(function(){
         return diff
     }
 
-
     /**
      * this process is called when a user submit a word
      * if the word exists in our server dictionnary, then it will do the comparison between the submited word and the word of the day and update table view
@@ -196,7 +185,6 @@ $(document).ready(function(){
             if (test == "true"){
                 update_table(submit)
                     if (win == true){
-                        
                         alert('You win !')
 
                         $.ajax({
@@ -205,7 +193,6 @@ $(document).ready(function(){
                             data: {user : sessionStorage.getItem('username'),
                                     nb_try: (iterator-1), win:1},
                             success: function(){
-                                
                             }
                         })
 
@@ -217,19 +204,15 @@ $(document).ready(function(){
                             },
                             async: false
                         })
-
                     }
                 }
-            
             else{
                 alert("Your word doesn't exist !")
             }
-
             $('#testWord').val('')
         }
 
         if (iterator == 6){
-
             alert('You lose !')
             
             $.ajax({
@@ -238,7 +221,6 @@ $(document).ready(function(){
                 data: {user : sessionStorage.getItem('username'),
                         nb_try: 0, win:0},
                 success: function(){
-                
                 }
             })
 
@@ -255,9 +237,6 @@ $(document).ready(function(){
         return false
     })
 
-
     target = init()
     generate_table()
-
-
 })

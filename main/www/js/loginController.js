@@ -1,10 +1,7 @@
 $(document).ready(function(){
-
     $('#loginForm').submit(function( event ) {
-
         sessionStorage.setItem("username", $("#username").val())
         sessionStorage.setItem("password", $("#password").val())
-
 
         $.ajax({
             type: "POST",
@@ -45,11 +42,8 @@ $(document).ready(function(){
                 else{
                     alert('Login Failed !')
                 }
-                
             }
         })
-
         return false
     })
-
 })

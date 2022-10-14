@@ -17,7 +17,6 @@
         <title>BOUCHECOUSUE - GAME</title>
         <meta charset="UTF-8">
 
-        
         <link rel="stylesheet" href="./css/header.css">
         <link rel="stylesheet" href="./css/sheet.css">
 
@@ -27,8 +26,6 @@
     </head>
 
     <body scroll="no">  
-
-        
         <div id="header">
             <script>
                 $.ajax({
@@ -43,12 +40,8 @@
             </script>      
         </div>
 
-        
-
-
         <div id="page">
             <script>
-
                     $.ajax({
                         type: "POST",
                         url: "http://localhost:2999/is_logged",
@@ -56,7 +49,6 @@
                         success: (result) =>{
                             console.log("result : " + JSON.parse(result).val)
                             if (JSON.parse(result).val == 'true') {
-
                                 $.ajax({
                                     type: "POST",
                                     url: "http://localhost:3001/already_played",
@@ -85,9 +77,6 @@
                                     },
                                     async: false
                                 })
-
-
-
                             }
                             else {
                                 $.ajax({
@@ -100,20 +89,14 @@
                                     async: false
                                 })
                             }
-                            
                         },
                         async: false
                     })
-
-                
             </script>
         </div>
-
 
         <div id="footer">
             <h2> Development version </h2>
         </div>
-
-
     </body>
 </html>

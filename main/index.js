@@ -42,6 +42,7 @@ console.log('Word generated : ' + words[randomNumber])
 	})
 
 
+
 //APIs RETRIEVING HTML STATIC BRICKS
 
 	/**

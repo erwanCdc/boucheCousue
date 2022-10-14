@@ -63,7 +63,6 @@ app.use((req, res, next) => {
      * (true if session is open, false else)
      */
     app.post('/is_logged', (req,res) => {
-
         username = req.body.username
 
         var val
@@ -79,7 +78,6 @@ app.use((req, res, next) => {
             val:val
         }
         res.send(JSON.stringify(result))
-
     })
 
     /**
@@ -87,7 +85,6 @@ app.use((req, res, next) => {
      * if authentication success, a session is opened client-side
      */
 	app.post('/log_user', (req,res) => {
-
 		const users_db = require(db_path)
         username = req.body.username
         password = req.body.password
@@ -108,7 +105,6 @@ app.use((req, res, next) => {
             res.send(true)
         }
         else {
-
             if (verifu && !verifp){
                 console.log("wrong password for user : " + username)
             } 
@@ -136,10 +132,8 @@ app.use((req, res, next) => {
         })
     
         if (verifu){
-    
         } 
         else {
-    
             let new_user = {
                 user: username,
                 password: password

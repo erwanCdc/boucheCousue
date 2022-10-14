@@ -27,26 +27,3 @@ services:
       - "3001:3001"
     restart: always
     init: true
-
-  grafana:
-    image: grafana/grafana
-    container_name: grafana
-    ports:
-      - "4000:3000"
-    expose:
-      - "4000"
-    restart: unless-stopped
-    networks:
-      - monitor-net
-
-  loki:
-    image: grafana/loki
-    container_name: loki
-    ports:
-      - "3100:3100"
-    restart: unless-stopped
-    networks:
-      - monitor-net
-
-networks:
-  monitor-net:
