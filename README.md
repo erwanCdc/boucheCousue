@@ -6,11 +6,15 @@
 </p>
 
 ## SUMMARY
-1. [SETUP](#SETUP)
-2. [RUN & MAINTAIN](#RUN--MAINTAIN)
-3. [TECHNICAL DOCUMENTATION](#TECHNICAL-DOCUMENTATION)
-  3.1. [Project state](#Project-state)
-    - 
+- [SETUP](#SETUP)
+- [RUN & MAINTAIN](#RUN--MAINTAIN)
+- [TECHNICAL DOCUMENTATION](#TECHNICAL-DOCUMENTATION)
+    - [Project state](#Project-state)
+    - [Sequence diagram](#Sequence-diagram)
+    - [ToDo](ToDo)
+- [USEFUL TOOLS](#USEFUL-TOOLS)
+- [LICENSE](#LICENSE)
+- [AUTHORS](#AUTHORS)
 
 ## SETUP
 - Requierements:
