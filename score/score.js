@@ -25,8 +25,6 @@ app.use((req, res, next) => {
 		next()
 })
 
-// Score database management variables & functions
-var score
 
 
 function update_db(user, attribute, value){

@@ -32,7 +32,6 @@ const randomNumber = Math.floor(generator() * words.length)
 currentWord = words[randomNumber]
 console.log('Word generated : ' + words[randomNumber])
 
-var score = null
 
 
 //ALLOW CROSS REQUESTS
