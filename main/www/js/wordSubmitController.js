@@ -212,7 +212,7 @@ $(document).ready(function(){
             $('#testWord').val('')
         }
 
-        if (iterator == 6){
+        if ((iterator == 6)&&(win==false)){
             alert('You lose !')
             
             $.ajax({
