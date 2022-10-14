@@ -27,6 +27,7 @@
 - **auth**: manages authentication database and related computation.
 
 ### Sequence diagram
+This diagram assume the user has no account. He will create one and win the game in two tries.
 ``` mermaid
 sequenceDiagram
     User->>+CLIENT: request: access game
