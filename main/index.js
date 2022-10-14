@@ -49,7 +49,6 @@ console.log('Word generated : ' + words[randomNumber])
 	 * this api send the HTML brick concerning the motus game
 	 */
 	app.get('/game', (req,res) => {
-		logger.info({message:'URL '+req.url, labels:{'url':req.url, 'admin':'admin'}})
 		res.sendFile(mainPath+'/html/game.html')
 	})
 
