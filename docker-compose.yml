@@ -32,7 +32,9 @@ services:
     image: grafana/grafana
     container_name: grafana
     ports:
-      - "4000:4000"
+      - "4000:3000"
+    expose:
+      - "4000"
     restart: unless-stopped
     networks:
       - monitor-net
@@ -41,7 +43,7 @@ services:
     image: grafana/loki
     container_name: loki
     ports:
-      - "4001:4001"
+      - "3100:3100"
     restart: unless-stopped
     networks:
       - monitor-net
