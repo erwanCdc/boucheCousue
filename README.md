@@ -11,10 +11,7 @@
     - [docker-compose](https://docs.docker.com/compose/install/)
     - [npm](https://www.npmjs.com/)
 - Download this GitHub repository code
-- Run the setup script: `sudo sh setup.sh`. This script will:
-    1. update npm
-    2. install dependencies
-    3. build images
+- Run image build and containers creation: `sudo docker-compose up`
 
 ## RUN & MAINTAIN
 - To run the app:
@@ -26,7 +23,7 @@
 ### Project tree
 **BOUCHECOUSUE** run three different servers to function:
 - **main**: manages the game.
-- **db**: manages the score database and related computation.
+- **score**: manages the score database and related computation.
 - **auth**: manages authentication database and related computation.
 
 ### ToDo

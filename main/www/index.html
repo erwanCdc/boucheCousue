@@ -67,7 +67,7 @@
                             else {
                                 $.ajax({
                                     type: "GET",
-                                    url: "login",
+                                    url: "http://localhost:2999/login",
                                     success: (page) =>{
                                         sessionStorage.clear()
                                         $('#page').html(page)

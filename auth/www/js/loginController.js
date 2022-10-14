@@ -11,21 +11,8 @@ $(document).ready(function(){
             url: "http://localhost:2999/log_user",
             data: {username:sessionStorage.getItem("username"), 
             password:sessionStorage.getItem("password")},
-            success: function(auth){
-                if (auth){
-                    $.ajax({
-                        type: "GET",
-                        url: "game",
-                        success: (page) =>{
-                            $('#page').html(page)
-                        },
-                        async: false
-                    })
-                }
-                else{
-                    alert('Login Failed !')
-                }
-                
+            success: function(page){
+                $('#page').html(page);
             }
         })
 

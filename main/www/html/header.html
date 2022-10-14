@@ -10,7 +10,7 @@
                             if (JSON.parse(result).val == 'true') {
                                 $.ajax({
                                     type: "GET",
-                                    url: "score",
+                                    url: "http://localhost:3001/score",
                                     success: (page) =>{
                                         $('#page').html(page)
                                     },
@@ -20,7 +20,7 @@
                             else {
                                 $.ajax({
                                     type: "GET",
-                                    url: "login",
+                                    url: "http://localhost:2999/login",
                                     success: (page) =>{
                                         sessionStorage.clear()
                                         $('#page').html(page)
@@ -68,7 +68,7 @@
                             else {
                                 $.ajax({
                                     type: "GET",
-                                    url: "login",
+                                    url: "http://localhost:2999/login",
                                     success: (page) =>{
                                         sessionStorage.clear()
                                         $('#page').html(page)
