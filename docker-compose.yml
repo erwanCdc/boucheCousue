@@ -21,7 +21,7 @@ services:
 
   score_service:
     build:
-      context: ./db
+      context: ./score
     container_name: score
     ports:
       - "3001:3001"
