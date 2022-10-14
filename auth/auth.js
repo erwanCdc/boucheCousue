@@ -25,8 +25,6 @@ app.use((req, res, next) => {
 })
 
 
-var username
-var password
 
 //APIs CONCERNING USERS ACCESS
 
@@ -41,13 +39,17 @@ var password
 	})
 
 
-    app.get('/is_logged', (req,res) => {
+    app.post('/is_logged', (req,res) => {
+
+        username = req.body.username
 
         var val
-        if (username != null){
+        if ((username != null)&&(username != undefined)&&(username != "")){
+            console.log("user is connected : /" + username + "/")
             val = 'true'
         }
         else{
+            console.log("user isnt connected")
             val = 'false'
         }
         result = {
@@ -150,11 +152,9 @@ var password
 	})
 
 	//this api delete {username/password} and abort the "session"
-	app.get('/logout', (req, res) =>{
+	app.post('/logout', (req, res) =>{
+        username = req.body.username
 		console.log("user disconnected : " + username)
-		username = null
-		password = null
-		
         res.sendFile(mainPath+"/html/login.html")
 	})
 

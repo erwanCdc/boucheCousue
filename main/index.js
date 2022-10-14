@@ -55,6 +55,11 @@ var score = null
 		res.sendFile(mainPath+'/html/game.html')
 	})
 
+	//this api send the HTML brick concerning the motus game
+	app.get('/alrdy_played', (req,res) => {
+		res.sendFile(mainPath+'/html/alrdy_played.html')
+	})
+
 	//this api send the HTML brick used as header in our global HTML page
 	app.get('/header', (req,res) => {
 		res.sendFile(mainPath+'/html/header.html')

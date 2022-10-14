@@ -195,7 +195,7 @@ $(document).ready(function(){
                     if (win == true){
                         
                         alert('You win !')
-                        
+
                         $.ajax({
                             type: "POST",
                             url: "http://localhost:3001/update_score",

@@ -151,3 +151,13 @@ form{
     cursor: pointer;
     text-decoration: underline;
 }
+
+#already_played{
+    background-color: black;
+    border: solid;
+    border-radius: 5px;
+    border-color: white;
+    color:white;
+    font-family: sans-serif;
+    padding: 5px;
+}

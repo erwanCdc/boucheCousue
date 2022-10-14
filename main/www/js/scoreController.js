@@ -19,11 +19,11 @@ $(document).ready(function(){
         data : {username:user},
         success: (result) =>{
             $('#score').html(JSON.parse(result).score)
+            $('#nb_games').html(JSON.parse(result).nb_games)
+            $('#win_prct').html(JSON.parse(result).win_prct+"%")
         },
         async: false
     })
 
     return false
 })
-
-    
