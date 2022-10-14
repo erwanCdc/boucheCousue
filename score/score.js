@@ -65,6 +65,7 @@ app.post('/update_score', (req,res) => {
 	update_db(user,'number_victories', parseInt(req.body.win))
 	update_db(user, 'number_games', 1)
 	update_db(user, 'cumulated_score', parseInt(req.body.nb_try))
+	update_db(user, 'played', 1)
 
 	scores_db.forEach(element => {
 		if (element.user == user){
