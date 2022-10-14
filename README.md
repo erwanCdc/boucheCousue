@@ -31,7 +31,12 @@ Some ideas have not been implemented and the project contain some known security
 
 #### Features
 Please find below an exhaustive list of the features not implemented for the moment.
-- TEST
+- Add a reverse proxy with haproxy.
+- oAuth2/OpenID.
+- Monitor logs & metrics.
+- Use a SQL database.
+- Deploy the app in the NAS we own.
+- Use EJS/Angular to import header/footer.
 
 #### Security breaches
 Please find below the security breaches we have indentified. We might have not identified all breaches, fell free to contact us if you find one.
