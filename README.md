@@ -5,6 +5,10 @@
     <img src="imgs/game_example.gif" alt="Animated example of the game" />
 </p>
 
+## SUMMARY
+[SETUP](#SETUP)
+[RUN & MAINTAIN](RUN & MAINTAIN)
+
 ## SETUP
 - Requierements:
     - [docker](https://docs.docker.com/engine/install/)
@@ -124,3 +128,6 @@ Here's a list of the usefull tools we used to develop this projet:
 This project is licensed under the **BSD 3-Clause License**. Feel free to edit and distribute this app as you like.
 
 See [LICENSE](https://github.com/alexisjapas/boucheCousue/blob/main/LICENSE) for more information.
+
+## AUTHORS
+Written by: Erwan CADIC, Lucas CHAPRON, Alexis JAPAS
