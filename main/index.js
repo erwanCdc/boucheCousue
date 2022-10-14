@@ -5,6 +5,21 @@ const os = require('os')
 const fs = require('fs')
 
 
+// Monitoring
+const loki_uri = process.env.LOKI || "http://127.0.0.1:4001";
+
+const { createLogger, transports } = require("winston");
+const LokiTransport = require("winston-loki");
+const options = {
+  transports: [
+    new LokiTransport({
+      host: loki_uri
+    })
+  ]
+};
+const logger = createLogger(options)
+
+// SECTION TO RENAME
 const app = express()
 
 
@@ -99,6 +114,7 @@ var score = null
 
 	//these apis send this server's port (get/listen)
 	app.get('/port', (req,res) => {
+		logger.info({message:'URL '+req.url, labels:{'url':req.url, 'user':'admin'}})
 		res.send("MOTUS is listening on " + os.hostname() + " port:  " + port)
 	})
 
