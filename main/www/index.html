@@ -50,19 +50,44 @@
             <script>
 
                     $.ajax({
-                        type: "GET",
+                        type: "POST",
                         url: "http://localhost:2999/is_logged",
+                        data:{username:sessionStorage.getItem('username')},
                         success: (result) =>{
                             console.log("result : " + JSON.parse(result).val)
                             if (JSON.parse(result).val == 'true') {
+
                                 $.ajax({
-                                    type: "GET",
-                                    url: "game",
-                                    success: (page) =>{
-                                        $('#page').html(page)
+                                    type: "POST",
+                                    url: "http://localhost:3001/already_played",
+                                    data:{username:sessionStorage.getItem("username")},
+                                    success: (played) =>{
+                                        if (played){
+                                            $.ajax({
+                                                type: "GET",
+                                                url: "alrdy_played",
+                                                success: (page) =>{
+                                                    $('#page').html(page)
+                                                },
+                                                async: false
+                                            })
+                                        }
+                                        else{
+                                            $.ajax({
+                                                type: "GET",
+                                                url: "game",
+                                                success: (page) =>{
+                                                    $('#page').html(page)
+                                                },
+                                                async: false
+                                            })
+                                        }
                                     },
                                     async: false
                                 })
+
+
+
                             }
                             else {
                                 $.ajax({

@@ -25,8 +25,6 @@ app.use((req, res, next) => {
 		next()
 })
 
-// Score database management variables & functions
-var score
 
 
 function update_db(user, attribute, value){
@@ -83,6 +81,35 @@ app.post('/update_score', (req,res) => {
 })
 
 
+app.post('/already_played', (req,res) => {
+
+	const scores_db = require(db_path)
+
+	let user = req.body.username
+	var user_json
+
+	scores_db.forEach(element => {
+		if (element.user == user){
+			user_json = element
+		}
+	})
+
+	if ((user_json != null)&&(user_json != undefined)){
+		if (user_json.played == 1){
+			res.send(true)
+		}
+		else {
+			res.send(false)
+		}
+	}
+	else{
+		res.send(false)
+	}
+
+
+})
+
+
 app.post('/get_score', (req, res) => {
 
 	const scores_db = require(db_path)
@@ -96,16 +123,27 @@ app.post('/get_score', (req, res) => {
 		}
 	})
 
-	let val
+	let val_avg
+	let val_win_prct
+
 	if (user_json.number_victories != 0){
-		val = Math.round(user_json.cumulated_score/user_json.number_victories*10)/10
+		val_avg = Math.round(user_json.cumulated_score/user_json.number_victories*10)/10
 	}
 	else {
-		val = 0
+		val_avg = 0
+	}
+
+	if (user_json.number_games != 0){
+		val_win_prct = Math.round(user_json.number_victories/user_json.number_games*100)
+	}
+	else{
+		val_win_prct = 0
 	}
 
 	result = {
-		score: val
+		score: val_avg,
+		win_prct: val_win_prct,
+		nb_games: user_json.number_games
 	}
 
 	res.send(JSON.stringify(result))

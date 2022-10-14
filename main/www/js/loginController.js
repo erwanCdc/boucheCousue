@@ -14,10 +14,30 @@ $(document).ready(function(){
             success: function(auth){
                 if (auth){
                     $.ajax({
-                        type: "GET",
-                        url: "game",
-                        success: (page) =>{
-                            $('#page').html(page)
+                        type: "POST",
+                        url: "http://localhost:3001/already_played",
+                        data:{username:sessionStorage.getItem("username")},
+                        success: (played) =>{
+                            if (played){
+                                $.ajax({
+                                    type: "GET",
+                                    url: "alrdy_played",
+                                    success: (page) =>{
+                                        $('#page').html(page)
+                                    },
+                                    async: false
+                                })
+                            }
+                            else{
+                                $.ajax({
+                                    type: "GET",
+                                    url: "game",
+                                    success: (page) =>{
+                                        $('#page').html(page)
+                                    },
+                                    async: false
+                                })
+                            }
                         },
                         async: false
                     })

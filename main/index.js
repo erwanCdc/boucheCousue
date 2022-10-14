@@ -47,7 +47,6 @@ const randomNumber = Math.floor(generator() * words.length)
 currentWord = words[randomNumber]
 console.log('Word generated : ' + words[randomNumber])
 
-var score = null
 
 
 //ALLOW CROSS REQUESTS
@@ -68,6 +67,11 @@ var score = null
 	//this api send the HTML brick concerning the motus game
 	app.get('/game', (req,res) => {
 		res.sendFile(mainPath+'/html/game.html')
+	})
+
+	//this api send the HTML brick concerning the motus game
+	app.get('/alrdy_played', (req,res) => {
+		res.sendFile(mainPath+'/html/alrdy_played.html')
 	})
 
 	//this api send the HTML brick used as header in our global HTML page
