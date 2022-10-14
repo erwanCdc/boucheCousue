@@ -1,18 +1,17 @@
+// IMPORTS
 const express = require('express')
 const seedrandom = require('seedrandom')
 const bodyParser = require("body-parser")
 const os = require('os')
 const fs = require('fs')
 
-
-const app = express()
-
-
+// PORT
 const port = process.env.PORT || 3000
 const host = 'localhost:3000'
 
+// APP
 const mainPath = (__dirname+'/www')
-
+const app = express()
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.text());
 app.use(express.static(mainPath))
@@ -43,31 +42,36 @@ console.log('Word generated : ' + words[randomNumber])
 	})
 
 
-	app.get('/', (req,res) => {
-		
-	})
+//APIs RETRIEVING HTML STATIC BRICKS
 
-//APIs RETRIEVING STATIC HTML PAGES
-
-	//this api send the HTML brick concerning the motus game
+	/**
+	 * this api send the HTML brick concerning the motus game
+	 */
 	app.get('/game', (req,res) => {
 		res.sendFile(mainPath+'/html/game.html')
 	})
 
-	//this api send the HTML brick concerning the motus game
+	/**
+	 * this api send the HTML brick preventing the player that he can't play again today
+	 */
 	app.get('/alrdy_played', (req,res) => {
 		res.sendFile(mainPath+'/html/alrdy_played.html')
 	})
 
-	//this api send the HTML brick used as header in our global HTML page
+	/**
+	 * this api send the HTML brick used as header in our global HTML page
+	 */
 	app.get('/header', (req,res) => {
 		res.sendFile(mainPath+'/html/header.html')
 	})
 
 
-//APIs RETRIEVING DATA FROM SERVER
 
-	//this api send a JSON object containing the word of the day
+//APIs CONCERNING THE GAME
+
+	/**
+	 * this api send a JSON object containing the word of the day
+	 */
 	app.get('/get_mot', (req, res) => {  
 		response = {  
 			word:currentWord
@@ -76,7 +80,9 @@ console.log('Word generated : ' + words[randomNumber])
 		res.end(JSON.stringify(response));  
 	})  
 
-	//this api send a boolean, true if the submited word exists in our dictionnary, false else.
+	/**
+	 * this api send a boolean, true if the submited word exists in our dictionnary, false else
+	 */
 	app.post('/test_word', (req, res) => {
 		test = req.body.word
 	
@@ -98,14 +104,18 @@ console.log('Word generated : ' + words[randomNumber])
 
 
 
-
 //APIs NETWORK
 
-	//these apis send this server's port (get/listen)
+	/**
+	 * this api send this server's port
+	 */
 	app.get('/port', (req,res) => {
 		res.send("MOTUS is listening on " + os.hostname() + " port:  " + port)
 	})
 
+	/**
+	 * this api print this server's port
+	 */
 	app.listen(port, () => {
 		console.log('Application running on ' + os.hostname() + " port : " + port)
 	})

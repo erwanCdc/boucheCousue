@@ -22,9 +22,11 @@ $(document).ready(function(){
         return this.substring(0, index) + replacement + this.substring(index + 1);
     }
 
-    //this function is called when a user accessed the game page : 
-    //it makes an ajax request to get the word of the day and define the HTML input size 
-    //(so it's mandatory for the user to print a word with the same size)
+    /**
+     * this function is called when a user accessed the game page : 
+     * it makes an ajax request to get the word of the day and define the HTML input size according to word length
+     * (so it's mandatory for the user to print a word with the same size)
+     */
     function init(){
         let word = ""
 
@@ -43,7 +45,9 @@ $(document).ready(function(){
 
     }
 
-    //this function generate the HTML table containing user's resposnes
+    /**
+     * this function generate the HTML table containing user's resposnes
+     */
     function generate_table(){
         var table = document.getElementById("tries")
 
@@ -125,9 +129,9 @@ $(document).ready(function(){
     }
 
     /**
-     * 
      * this function compare the submited word with the word of the day
-     * then, it returns a comparison string
+     * then, it returns the comparison 
+     * (? => letter exists but isn't at the right place, _ => letter doesn't exist)
      */
     function word_comparison(submit){
     
@@ -174,7 +178,6 @@ $(document).ready(function(){
     /**
      * this process is called when a user submit a word
      * if the word exists in our server dictionnary, then it will do the comparison between the submited word and the word of the day and update table view
-     * 
      */
     $('#gamePlace').submit(function( event ) {
         if (!win){
