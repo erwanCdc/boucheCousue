@@ -9,7 +9,7 @@
 1. [SETUP](#SETUP)
 2. [RUN & MAINTAIN](#RUN--MAINTAIN)
 3. [TECHNICAL DOCUMENTATION](#TECHNICAL-DOCUMENTATION)
-  3.1 [Project state](#Project-state)
+  3.1. [Project state](#Project-state)
     - 
 
 ## SETUP
