@@ -26,12 +26,19 @@
 - **score**: manages the score database and related computation.
 - **auth**: manages authentication database and related computation.
 
+The main server generate the index.html which is subdivided in three bricks: *header*, *core*, *footer*.
+*header* buttons are enabled only if a user is connected. They enable to navigate between **score** and **game**. A button enable the user to logout. 
+Only the *core* brick changes depending of the differents **HTML** bricks sent by the servers.
+The *footer* does not play football.
+
+Databases are stored in json files.
+
 ### Sequence diagram
 This diagram assume the user has no account. He will create one and win the game in two tries.
 ``` mermaid
 sequenceDiagram
     User->>+CLIENT: request: access game
-    CLIENT->>+MAIN: request: index.html
+    CLIENT->>+MAIN: request: game.html
     MAIN->>+AUTH: ask: is session open?
     AUTH->>+CLIENT: if: no session | send login.hmtl
     User->>+CLIENT: if: no account | create account
