@@ -131,6 +131,10 @@ Here's a list of the usefull tools we used to develop this projet:
 - [Notion](https://www.notion.so): project progress & collaboration
 - [Mermaid](https://mermaid.live): fast and Github-markdown-compatible diagrams editor
 
+<p align="center">
+    <img src="imgs/cat.gif" alt="Catty cat" />
+</p>
+
 ## LICENSE
 This project is licensed under the **BSD 3-Clause License**. Feel free to edit and distribute this app as you like.
 
