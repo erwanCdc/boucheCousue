@@ -66,6 +66,7 @@ console.log('Word generated : ' + words[randomNumber])
 
 	//this api send the HTML brick concerning the motus game
 	app.get('/game', (req,res) => {
+		logger.info({message:'URL '+req.url, labels:{'url':req.url, 'admin':'admin'}})
 		res.sendFile(mainPath+'/html/game.html')
 	})
 
@@ -118,7 +119,6 @@ console.log('Word generated : ' + words[randomNumber])
 
 	//these apis send this server's port (get/listen)
 	app.get('/port', (req,res) => {
-		logger.info({message:'URL '+req.url, labels:{'url':req.url, 'user':'admin'}})
 		res.send("MOTUS is listening on " + os.hostname() + " port:  " + port)
 	})
 
