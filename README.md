@@ -23,8 +23,11 @@
 ### Project state
 #### The game
 The game page is composed of two sections: an *input field* and a *table* displaying letters sent by the user and their state (green: the letter exists and is well placed, orange: the letter exists and is badly placed, red: the letter does not exists). If a letter has more occurances in the user's try than in the target word, only the number of occurances in the target word will be colored as green and/or orange.
+
 The user cannot send a word with a different size than the target word. The user cannot send a word that not exists in our dictionary.
+
 The user has **five** tries to win.
+
 The user can only play once a day.
 
 #### Score
@@ -38,8 +41,11 @@ The score is displayed as a table containing: its user name, its average number 
 
 #### HTML
 The main server generate the index.html which is subdivided in three bricks: *header*, *core*, *footer*.
-*header* buttons are enabled only if a user is connected. They enable to navigate between **score** and **game**. A button enable the user to logout. 
+
+*header* buttons are enabled only if a user is connected. They enable to navigate between **score** and **game**. A button enable the user to logout.
+
 Only the *core* brick changes depending of the differents **HTML** bricks sent by the servers.
+
 The *footer* does not play football.
 
 #### JavaScript
@@ -50,7 +56,9 @@ Databases are *JSON* files. The score and authentication databases are separated
 
 #### Deployment
 We used *Docker* to deploy our app. Each server has its container.
+
 To construct the images, Dockerfiles have been written. A docker-compose.yml enable us to build and run all containers at once.
+
 All images are based on the [node](https://hub.docker.com/_/node) image.
 
 ### Sequence diagram
@@ -114,4 +122,5 @@ Here's a list of the usefull tools we used to develop this projet:
 
 ## LICENSE
 This project is licensed under the **BSD 3-Clause License**. Feel free to edit and distribute this app as you like.
+
 See [LICENSE](https://github.com/alexisjapas/boucheCousue/blob/main/LICENSE) for more information.
