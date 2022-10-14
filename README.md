@@ -1,5 +1,5 @@
 # BOUCHECOUSUE
-**BOUCHECOUSUE** is a [sutom]()-like game. Guess the daily word by knowing it first letter and it number of letters. Be carefull, you only have 6 tries.
+**BOUCHECOUSUE** is a [sutom]()-like game. Guess the daily word by knowing it first letter and it number of letters. Be carefull, you only have **5 tries**.
 
 <p align="center">
     <img src="imgs/game_example.gif" alt="Animated example of the game" />
