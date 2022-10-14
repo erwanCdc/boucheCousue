@@ -6,8 +6,10 @@
 </p>
 
 ## SUMMARY
-[SETUP](#SETUP)
-[RUN & MAINTAIN](#RUN)
+1. [SETUP](#SETUP)
+2. [RUN & MAINTAIN](#RUN--MAINTAIN)
+3. [TECHNICAL DOCUMENTATION](#TECHNICAL DOCUMENTATION)
+    4. [Project state](#Project-state)
 
 ## SETUP
 - Requierements:
