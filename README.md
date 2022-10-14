@@ -53,6 +53,11 @@ sequenceDiagram
     MAIN->>+SCORE: send: success(score)
     SCORE->>+SCORE: update: score
     SCORE->>+CLIENT: send: score.html
+    User->>+CLIENT: request: access game
+    CLIENT->>+MAIN: request: game.html
+    MAIN->>+SCORE: ask: have user played today
+    SCORE->>+MAIN: send: yes
+    MAIN->>+CLIENT: send: already_played.html
 ```
 
 ### ToDo
