@@ -11,11 +11,13 @@ const host = 'localhost:'+port
 
 //Database
 const db_path = './users.json'
+const mainPath = (__dirname+'/www')
 
 // App
 const app = express()
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.text())
+app.use(express.static(mainPath))
 app.use((req, res, next) => {
 		res.header("Access-Control-Allow-Origin", "*")
 		res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept")
@@ -27,6 +29,16 @@ var username
 var password
 
 //APIs CONCERNING USERS ACCESS
+
+	//this api send the HTML brick concerning the login
+	app.get('/login', (req, res) =>{
+		res.sendFile(mainPath+'/html/login.html')
+	})
+
+	//this api send the HTML brick concerning the registration
+	app.get('/register', (req, res) =>{
+		res.sendFile(mainPath+'/html/register.html')
+	})
 
 
     app.get('/is_logged', (req,res) => {
@@ -77,19 +89,7 @@ var password
         if (verifu && verifp){
 
             console.log("user authenticated : " + username)
-
-            http.get('http://main_service:3000/game', (page) => {
-             
-                var bodyChunks = [];
-                page.on('data', function(chunk) {
-                    
-                    bodyChunks.push(chunk);
-                }).on('end', function() {
-                    var body = Buffer.concat(bodyChunks);
-                    res.send(body)
-                    
-                })
-            })
+            res.send(true)
         }
         else {
 
@@ -143,19 +143,7 @@ var password
                 } 
                 else{
                     console.log("user created : " + username)
-
-                    http.get('http://main_service:3000/game', (page) => {
-             
-                        var bodyChunks = [];
-                        page.on('data', function(chunk) {
-                            
-                            bodyChunks.push(chunk);
-                        }).on('end', function() {
-                            var body = Buffer.concat(bodyChunks);
-                            res.send(body)
-                            
-                        })
-                    })
+                    res.send(true)
                 }
             })
         }
@@ -167,19 +155,7 @@ var password
 		username = null
 		password = null
 		
-        http.get('http://main_service:3000/login', (page) => {
-             
-            var bodyChunks = [];
-            page.on('data', function(chunk) {
-                
-                bodyChunks.push(chunk);
-            }).on('end', function() {
-                var body = Buffer.concat(bodyChunks);
-                res.send(body)
-                
-            })
-            
-        })
+        res.sendFile(mainPath+"/html/login.html")
 	})
 
 // Listening

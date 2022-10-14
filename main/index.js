@@ -55,21 +55,6 @@ var score = null
 		res.sendFile(mainPath+'/html/game.html')
 	})
 
-	//this api send the HTML brick concerning the player's data
-	app.get('/score', (req, res) => {
-		res.sendFile(mainPath+'/html/score.html')
-	})
-
-	//this api send the HTML brick concerning the login
-	app.get('/login', (req, res) =>{
-		res.sendFile(mainPath+'/html/login.html')
-	})
-
-	//this api send the HTML brick concerning the registration
-	app.get('/register', (req, res) =>{
-		res.sendFile(mainPath+'/html/register.html')
-	})
-
 	//this api send the HTML brick used as header in our global HTML page
 	app.get('/header', (req,res) => {
 		res.sendFile(mainPath+'/html/header.html')

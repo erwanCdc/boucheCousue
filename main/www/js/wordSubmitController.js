@@ -193,16 +193,26 @@ $(document).ready(function(){
             if (test == "true"){
                 update_table(submit)
                     if (win == true){
-                        alert('YOU WIN')
+                        
+                        alert('You win !')
                         
                         $.ajax({
                             type: "POST",
                             url: "http://localhost:3001/update_score",
                             data: {user : sessionStorage.getItem('username'),
                                     nb_try: (iterator-1), win:1},
-                            success: function(page){
-                                $('#page').html(page);
+                            success: function(){
+                                
                             }
+                        })
+
+                        $.ajax({
+                            type: "GET",
+                            url: "http://localhost:3001/score",
+                            success: (page) =>{
+                                $('#page').html(page)
+                            },
+                            async: false
                         })
 
                     }
@@ -216,16 +226,26 @@ $(document).ready(function(){
         }
 
         if (iterator == 6){
-            alert("You lose!")
+
+            alert('You lose !')
             
             $.ajax({
                 type: "POST",
                 url: "http://localhost:3001/update_score",
                 data: {user : sessionStorage.getItem('username'),
                         nb_try: 0, win:0},
-                success: function(page){
-                    $('#page').html(page);
+                success: function(){
+                
                 }
+            })
+
+            $.ajax({
+                type: "GET",
+                url: "http://localhost:3001/score",
+                success: (page) =>{
+                    $('#page').html(page)
+                },
+                async: false
             })
         }
 

@@ -1,20 +1,23 @@
-<script src="../js/loginController.js"></script>
-<form id="loginForm">
+<script src="../js/registerController.js"></script>
+<form id="registerForm">
         <label for="username">Username : </label>
         <input type="text" id="username" name="username" required="true"  autocomplete="off">
 
         <label for="password">Password : </label>
         <input type="password" id="password" name="password" required="true"  autocomplete="off">
 
-        <input type="submit" value="Login">
+        <label for="confirm_password">Confirm password : </label>
+        <input type="password" id="confirm_password" name="confirm_password" required="true"  autocomplete="off">
 
-        <span id="create_acc" class="log_redirect">You can create an account here !
+        <input type="submit" value="Register">
+
+        <span id="log_acc" class="log_redirect">You already have an account ?
 
             <script>
-            $('#create_acc').click(function(event){
+            $('#log_acc').click(function(event){
                 $.ajax({
                     type: "GET",
-                    url: "register",
+                    url: "http://localhost:2999/login",
                     success: (page) =>{
                         $('#page').html(page)
                     },
