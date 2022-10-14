@@ -139,9 +139,7 @@ app.use((req, res, next) => {
                 password: password
             }
             users_db.push(new_user)
-            users_db.forEach(element => {
-                console.log(element.user)
-            })
+
     
             fs.writeFile(db_path, JSON.stringify(users_db), err => {
                 if (err){
