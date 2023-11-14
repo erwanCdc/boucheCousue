@@ -9,7 +9,27 @@ on:
       - main
 
 jobs:
-  Build-App-Linux:
+
+  Build-App-macos:
+    runs-on: macos-latest
+
+    steps:
+    - name: Check out repository
+      uses: actions/checkout@main
+
+    - name: Install Dependencies
+      run: |
+        /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+        brew update
+        brew upgrade
+        brew install docker docker-compose node npm
+        brew services start docker
+
+    - name: Start Project
+      run: |
+        docker-compose up -d
+
+  Build-App-ubuntu:
     runs-on: ubuntu-latest
 
     steps:
@@ -32,4 +52,7 @@ jobs:
     - name: Stop Project
       run: |
         sudo docker stop $(docker ps -aq)
+
+
+  
         
