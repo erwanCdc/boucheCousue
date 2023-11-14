@@ -26,7 +26,8 @@ jobs:
 
     - name: Run Project
       run: |
-        sudo docker-compose up
+        sudo docker-compose up &
+        sleep 10
 
     - name: Stop Project
       run: |
