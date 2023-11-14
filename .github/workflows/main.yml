@@ -46,12 +46,12 @@ jobs:
 
     - name: Run Project
       run: |
-        sudo docker-compose up &
+        sudo docker-compose up -d
         sleep 10
 
     - name: Stop Project
       run: |
-        sudo docker stop $(docker ps -aq)
+        docker-compose down
 
 
   
