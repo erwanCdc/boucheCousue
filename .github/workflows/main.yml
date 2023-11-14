@@ -20,6 +20,7 @@ jobs:
       run: |
         sudo apt update
         sudo apt upgrade
+        sudo apt-get remove containerd.io
         sudo apt install docker.io docker-compose nodejs npm
         sudo systemctl enable docker --now
 
