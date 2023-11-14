@@ -1,0 +1,29 @@
+name: Build
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  Build-App-Linux:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Check out repository
+      uses: actions/checkout@main
+
+    - name: Install Dependencies
+      run: |
+        sudo apt update
+        sudo apt upgrade
+        sudo apt install docker.io docker-compose nodejs npm
+        sudo systemctl enable docker --now
+
+    - name: Run Project
+      run: |
+        sudo docker-compose up
+        
